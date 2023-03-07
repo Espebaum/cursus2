@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:53:33 by gyopark           #+#    #+#             */
-/*   Updated: 2023/03/07 21:24:42 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/07 21:35:04 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	*philo_loof(void *argv)
 	{
 		if (!philo_eat(arg, share, philo))
 			continue ;
-		if (arg->max_eat_count && (arg->max_eat_count == philo->eat_count))
+		if (arg->max_eat_count > 0 && (arg->max_eat_count == philo->eat_count))
 		{
 			pthread_mutex_lock(&arg->status);
 			arg->eat_finished++;
