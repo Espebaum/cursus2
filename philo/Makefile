@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eunrlee <eunrlee@student.42seoul.k>        +#+  +:+       +#+         #
+#    By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/06 19:00:57 by eunrlee           #+#    #+#              #
-#    Updated: 2023/02/08 17:31:23 by eunrlee          ###   ########.fr        #
+#    Created: 2023/03/07 18:31:48 by gyopark           #+#    #+#              #
+#    Updated: 2023/03/07 20:38:09 by gyopark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra # -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g # -fsanitize=thread
 NAME = philo
 SRCS = philo.c utils.c init.c thread.c share.c
 OBJS = $(SRCS:.c=.o)

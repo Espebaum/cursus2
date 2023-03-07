@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:17:07 by gyopark           #+#    #+#             */
-/*   Updated: 2023/02/28 20:24:54 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/07 21:11:10 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_arg
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				eat_count;
-	int				eat_finshed;
+	int				max_eat_count;
+	int				eat_finished;
 	int				finish;
 	pthread_mutex_t	status;
 	pthread_mutex_t	print;
@@ -53,5 +53,26 @@ typedef struct s_philo
 	t_share		*share;
 }	t_philo;
 
+//init functions
+int		ft_arg_init(int argc, char **argv, t_arg *arg, t_share *share);
+int		init_philo(t_arg *arg, t_share *share, t_philo **philo);
+
+//thread functions
+void	*philo_loof(void *argv);
+void	monitoring(t_arg *arg, t_philo *philo);
+int		check_finish(t_arg *arg);	
+int		check_fork(t_arg *arg, t_share *share, int id);
+void	change_finish(t_arg *arg);
+long	get_share(t_arg *arg, t_philo *philo, int flag);
+void	print_philo(t_arg *arg, t_philo *philo, char *str, int flag);
+
+//util functions
+void	ft_putendl_fd(char *s, int fd);
+long	ft_get_time(void);
+int		ft_isdigit(int c);
+int		ft_atoi(char *str);
+
+//freeing function
+int		free_thread(t_arg *arg, t_share *share, t_philo *philo, int result);
 
 #endif
