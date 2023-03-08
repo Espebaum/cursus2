@@ -6,12 +6,12 @@
 #    By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 18:31:48 by gyopark           #+#    #+#              #
-#    Updated: 2023/03/07 20:38:09 by gyopark          ###   ########.fr        #
+#    Updated: 2023/03/08 17:35:59 by gyopark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g # -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=thread
 NAME = philo
 SRCS = philo.c utils.c init.c thread.c share.c
 OBJS = $(SRCS:.c=.o)

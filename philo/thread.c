@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:53:33 by gyopark           #+#    #+#             */
-/*   Updated: 2023/03/07 21:35:04 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:00:01 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print_philo(t_arg *arg, t_philo *philo, char *str, int flag)
 	if (!check_finish(arg))
 	{
 		now = ft_get_time();
-		printf("%ld %d %s\n", now - philo->start, philo->id + 1, str);
+		printf("%ldms %d %s\n", now - philo->start, philo->id + 1, str);
 		if (flag == 1)
 			change_finish(arg);
 	}
@@ -51,7 +51,7 @@ void	monitoring(t_arg *arg, t_philo *philo)
 	while (!check_finish(arg))
 	{
 		tmp = (int)get_share(arg, 0, 0);
-		if (arg->max_eat_count && arg->max_eat_count == tmp)
+		if (arg->max_eat_count && arg->philo_num == tmp)
 		{
 			change_finish(arg);
 			break ;
@@ -112,7 +112,7 @@ void	*philo_loof(void *argv)
 	{
 		if (!philo_eat(arg, share, philo))
 			continue ;
-		if (arg->max_eat_count > 0 && (arg->max_eat_count == philo->eat_count))
+		if (arg->max_eat_count && (arg->max_eat_count == philo->eat_count))
 		{
 			pthread_mutex_lock(&arg->status);
 			arg->eat_finished++;

@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:37:36 by gyopark           #+#    #+#             */
-/*   Updated: 2023/03/07 21:11:30 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:58:48 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	check_argv(int argc, char **argv)
 	while (++i != argc)
 		if (check_is_num(argv[i]))
 			return (1);
-	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[2]) < 0 || ft_atoi(argv[3]) < 0
-		|| ft_atoi(argv[4]) < 0)
+	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[2]) <= 0 || ft_atoi(argv[3]) <= 0
+		|| ft_atoi(argv[4]) <= 0)
 		return (1);
 	if (argc == 6)
 		if (ft_atoi(argv[5]) < 1)

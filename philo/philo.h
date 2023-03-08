@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:17:07 by gyopark           #+#    #+#             */
-/*   Updated: 2023/03/07 21:11:10 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/08 17:35:16 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int		init_philo(t_arg *arg, t_share *share, t_philo **philo);
 //thread functions
 void	*philo_loof(void *argv);
 void	monitoring(t_arg *arg, t_philo *philo);
-int		check_finish(t_arg *arg);	
-int		check_fork(t_arg *arg, t_share *share, int id);
-void	change_finish(t_arg *arg);
 long	get_share(t_arg *arg, t_philo *philo, int flag);
+void	change_finish(t_arg *arg);
+int		check_fork(t_arg *arg, t_share *share, int id);
+int		check_finish(t_arg *arg);	
 void	print_philo(t_arg *arg, t_philo *philo, char *str, int flag);
 
 //util functions

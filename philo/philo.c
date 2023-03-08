@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 20:09:52 by gyopark           #+#    #+#             */
-/*   Updated: 2023/03/07 21:25:31 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:10:10 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ int	ft_philo(t_arg *arg, t_share *share, t_philo *philo)
 int	print_err(int result)
 {
 	if (result == 1)
-		ft_putendl_fd("Invalid number of arguments\n", 2);
+		ft_putendl_fd("Invalid number of arguments", 2);
 	if (result == 2)
-		ft_putendl_fd("Invalid value of arguments\n", 2);
+		ft_putendl_fd("Invalid value of arguments", 2);
 	if (result == 3)
-		ft_putendl_fd("Mutex init error\n", 2);
+		ft_putendl_fd("Mutex init error", 2);
 	if (result == 4)
-		ft_putendl_fd("Malloc error\n", 2);
+		ft_putendl_fd("Malloc error", 2);
 	if (result == 5)
-		ft_putendl_fd("Create error\n", 2);
+		ft_putendl_fd("Create error", 2);
 	return (result);
 }
 
