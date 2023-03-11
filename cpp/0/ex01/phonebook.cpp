@@ -1,10 +1,10 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 bool	PhoneBook::checknum(std::string s)
 {
 	if (s.length() > 1)
 		return (1);
-	if (s[0] - '0' > index || s[0] - '0' > 8)
+	if (s[0] == '0' || s[0] - '0' > index || s[0] - '0' > 8)
 		return (1);
 	return (0);
 }
@@ -18,7 +18,8 @@ void	PhoneBook::search()
 	}
 	else
 	{
-		std::cout << BOLDBLACK << std::setw(10) << "index" << "|" << std::setw(10) << "first name" << "|" << std::setw(10) << "last name" << "|" << std::setw(10) << "nickname" << std::endl;
+		std::cout << BOLDBLACK << std::setw(10) << "index" << "|" << std::setw(10) \
+		<< "first name" << "|" << std::setw(10) << "last name" << "|" << std::setw(10) << "nickname" << std::endl;
 		for(int i = 0; i < 8; i++)
 		{
 			if (i == index)
@@ -26,24 +27,23 @@ void	PhoneBook::search()
 			contacts[i].showContact(i);
 		}
 		std::string input;
-		std::cin >> input;
+		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			exit(1);
+		}
 		if (checknum(input))
 		{
 			std::cout << BOLDRED << "Error!, Please enter a number in correct range!" << std::endl;
 			return ;
 		}
 		int	num = input[0] - '0';
-		if (num == 0)
-		{
-			std::cout << BOLDRED << "Error!, Please enter a number in correct range!" << std::endl;
-			return ;
-		}
-		contacts[num - 1].showAllcontact();
+		contacts[num - 1].showAllContact();
 	}
 }
 
 void	PhoneBook::add()
 {
-	contacts[index % 8].newContact();
-	index++;
+	if (contacts[index % 8].newContact())
+		index++;
 }

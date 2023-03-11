@@ -1,24 +1,44 @@
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
-void	Contact::newContact()
+bool	checkTab(std::string s)
+{
+	for(int i = 0; i < static_cast<int>(s.length()); i++)
+	{
+		if (s[i] == '\t')
+			return (1);
+	}
+	return (0);
+}
+
+bool	Contact::newContact()
 {	
 	std::string input[5] = {"First Name : ", "Last Name : ", "Nickname : ", "Phone Number : ", "Darkest Secret : "};
+	std::string	tmp;
+
 	for(int i = 0; i < 5; i++)
 	{
 		info[i] = "";
 		std::cout << input[i];
 		while (info[i] == "")
 		{
-			std::getline(std::cin, info[i]);
+			std::getline(std::cin >> std::ws, tmp);
+			if (checkTab(tmp))
+			{
+				std::cout << BOLDRED << "Error!, Do not enter TAB after the word!" << std::endl;
+				return (0);
+			}
+			else
+				info[i] = tmp;
 			if (std::cin.eof())
 			{
 				exit(1);
 			}
 		}
 	}
+	return (1);
 }
 
-void    Contact::showAllcontact()
+void    Contact::showAllContact()
 {
 	std::string input[5] = {"First Name : ", "Last Name : ", "Nickname : ", "Phone Number : ", "Darkest Secret : "};
 

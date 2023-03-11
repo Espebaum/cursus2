@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <sstream>
+#include <cctype>
 
 #define RESET   "\033[0m"		/* Reset Color */
 #define BLACK   "\033[30m"      /* Black */
@@ -28,10 +30,12 @@ class Contact
 	private:
 		std::string info[5];
 	public:
-		void			newContact();
+		bool			newContact();
 		void			showContact(int i);
-		void			showAllcontact();
+		void			showAllContact();
+		bool			checktab(std::string s);
 		std::string		checkContact(std::string s);
+		void			clearContact();
 };
 
 class PhoneBook
