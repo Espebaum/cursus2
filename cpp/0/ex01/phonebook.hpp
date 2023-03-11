@@ -35,7 +35,6 @@ class Contact
 		void			showAllContact();
 		bool			checktab(std::string s);
 		std::string		checkContact(std::string s);
-		void			clearContact();
 };
 
 class PhoneBook

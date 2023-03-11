@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-std::string	ridspace(std::string tmp)
+std::string	ridrspace(std::string tmp)
 {
 	for(int i = 0; i < static_cast<int>(tmp.length()); i++)
 	{
@@ -26,7 +26,7 @@ int main(void)
 		{
 			exit(1);
 		}
-		input = ridspace(tmp);
+		input = ridrspace(tmp);
 		if (input == "ADD")
 		{
 			phonebook.add();
