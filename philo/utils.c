@@ -6,7 +6,7 @@
 /*   By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:16:33 by gyopark           #+#    #+#             */
-/*   Updated: 2023/03/08 16:25:28 by gyopark          ###   ########.fr       */
+/*   Updated: 2023/03/09 12:33:54 by gyopark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_putendl_fd(char *s, int fd)
 	len = 0;
 	len = ft_strlen(s);
 	write(fd, s, len);
-	write(2, "\n", 1);
+	write(fd, "\n", 1);
 }
 
 int	ft_atoi(char *str)
