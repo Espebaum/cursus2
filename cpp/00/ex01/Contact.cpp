@@ -22,6 +22,11 @@ bool	Contact::newContact()
 		while (info[i] == "")
 		{
 			std::getline(std::cin >> std::ws, tmp);
+			if (std::cin.eof())
+			{
+				std::cout << std::endl << RED << "CTRL D means END OF INPUT!" << std::endl;
+				exit(1);
+			}
 			if (checkTab(tmp))
 			{
 				std::cout << BOLDRED << "Error!, Do not enter TAB after the word!" << std::endl;
@@ -29,10 +34,6 @@ bool	Contact::newContact()
 			}
 			else
 				info[i] = tmp;
-			if (std::cin.eof())
-			{
-				exit(1);
-			}
 		}
 	}
 	return (1);

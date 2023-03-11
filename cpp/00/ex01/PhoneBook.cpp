@@ -30,7 +30,10 @@ void	PhoneBook::search()
 		std::getline(std::cin, input);
 		if (std::cin.eof())
 		{
-			exit(1);
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << RED << "CTRL D means END OF INPUT!" << std::endl;
+			exit(0);
 		}
 		if (checknum(input))
 		{

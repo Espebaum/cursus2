@@ -19,12 +19,13 @@ int main(void)
 	while (1)
 	{
 		std::cout << BOLDYELLOW << "===========================================" << std::endl;
-		std::cout << BOLDBLUE << "Input Command(ADD, SEARCH, EXIT)" << std::endl;
+		std::cout << BOLDBLUE << "     Input Command (ADD, SEARCH, EXIT)" << std::endl;
 		std::cout << BOLDYELLOW << "===========================================" << BOLDWHITE << std::endl;
 		std::getline(std::cin >> std::ws, tmp);
 		if (std::cin.eof())
 		{
-			exit(1);
+			std::cout << RED << "CTRL D means END OF INPUT!" << std::endl;
+			exit(0);
 		}
 		input = ridrspace(tmp);
 		if (input == "ADD")
@@ -40,7 +41,7 @@ int main(void)
 			break ;
 		}
 		else
-			std::cout << BOLDRED << "Wrong Input!" << std::endl;
+			std::cout << BOLDRED << "Error! Enter command one of three!" << std::endl;
 	}
 	return (0);
 }
