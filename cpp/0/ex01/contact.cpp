@@ -24,7 +24,7 @@ void    Contact::showAllcontact()
 
 	for (int i = 0; i < 5; i++)
 	{
-		std::cout << "\033[1;33m" << input[i] << "\033[1;34m" << info[i] << std::endl;
+		std::cout << BOLDCYAN << input[i] << BOLDMAGENTA << info[i] << std::endl;
 	}
 }
 

@@ -26,4 +26,3 @@ int main(int argc, char **argv)
 	std::cout << std::endl;
 	return (0);
 }
-//Instead of Standard output, use cout to print string in Upper Case.

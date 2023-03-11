@@ -7,7 +7,9 @@ int main(void)
 
 	while (1)
 	{
-		std::cout << BOLDBLUE << "Input Command(ADD, SEARCH, EXIT)" << "\033[0m" << std::endl;
+		std::cout << BOLDYELLOW << "===========================================" << std::endl;
+		std::cout << BOLDBLUE << "Input Command(ADD, SEARCH, EXIT)" << std::endl;
+		std::cout << BOLDYELLOW << "===========================================" << BOLDWHITE << std::endl;
 		std::cin >> input;
 		if (input == "ADD")
 		{
