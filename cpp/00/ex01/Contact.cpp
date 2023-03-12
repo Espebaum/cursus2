@@ -1,4 +1,4 @@
-#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 bool	checkTab(std::string s)
 {
@@ -10,7 +10,7 @@ bool	checkTab(std::string s)
 	return (0);
 }
 
-bool	Contact::newContact()
+void	Contact::newContact()
 {	
 	std::string input[5] = {"First Name : ", "Last Name : ", "Nickname : ", "Phone Number : ", "Darkest Secret : "};
 	std::string	tmp;
@@ -25,18 +25,18 @@ bool	Contact::newContact()
 			if (std::cin.eof())
 			{
 				std::cout << std::endl << RED << "CTRL D means END OF INPUT!" << std::endl;
-				exit(1);
+				exit(0);
 			}
 			if (checkTab(tmp))
 			{
 				std::cout << BOLDRED << "Error!, Do not enter TAB after the word!" << std::endl;
-				return (0);
+				exit(1);
 			}
 			else
 				info[i] = tmp;
 		}
 	}
-	return (1);
+	return ;
 }
 
 void    Contact::showAllContact()

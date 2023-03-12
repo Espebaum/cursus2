@@ -18,6 +18,7 @@ void	PhoneBook::search()
 	}
 	else
 	{
+		// std::cout.setf(std::ios::right);
 		std::cout << BOLDBLACK << std::setw(10) << "index" << "|" << std::setw(10) \
 		<< "first name" << "|" << std::setw(10) << "last name" << "|" << std::setw(10) << "nickname" << std::endl;
 		for(int i = 0; i < 8; i++)
@@ -47,6 +48,6 @@ void	PhoneBook::search()
 
 void	PhoneBook::add()
 {
-	if (contacts[index % 8].newContact())
-		index++;
+	contacts[index % 8].newContact();
+	index++;
 }

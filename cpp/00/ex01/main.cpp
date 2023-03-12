@@ -37,7 +37,7 @@ int main(void)
 			phonebook.search();
 		}
 		else if (input == "EXIT")
-		{
+		{ 
 			break ;
 		}
 		else
