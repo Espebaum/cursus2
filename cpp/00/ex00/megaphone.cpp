@@ -1,12 +1,6 @@
 #include <iostream>
 #include <string>
-
-char	char_upper(char c)
-{
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
-}
+#include <cctype>
 
 int main(int argc, char **argv)
 {
@@ -19,7 +13,7 @@ int main(int argc, char **argv)
 			std::string str = argv[i];
 			for (int j = 0; j < static_cast<int>(str.length()); j++)
 			{
-				std::cout << char_upper(str[j]);
+				std::cout << static_cast<char>(std::toupper(str[j]));
 			}
 		}
 	}

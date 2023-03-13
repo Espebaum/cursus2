@@ -1,10 +1,15 @@
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook()
+{
+	index = 0;
+}
+
 bool	PhoneBook::checknum(std::string s)
 {
 	if (s.length() > 1)
 		return (1);
-	if (s[0] == '0' || s[0] - '0' > index || s[0] - '0' > 8)
+	if (s[0] - '0' < 1 || s[0] - '0' > index || s[0] - '0' > 8)
 		return (1);
 	return (0);
 }

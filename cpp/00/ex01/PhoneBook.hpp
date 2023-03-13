@@ -9,7 +9,7 @@ class PhoneBook
 		int     index;
 		Contact contacts[8];
 	public:
-		PhoneBook() : index(0){};
+		PhoneBook();
 		void    add();
 		void    search();
 		bool	checknum(std::string s);
