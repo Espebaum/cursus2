@@ -3,11 +3,26 @@
 
 #include <iostream>
 
-class Foo
+class Simple
 {
-	private:
-	public:
-		int m_x;
+private:
+    int m_ID;
+
+public:
+    Simple(int id)
+    {
+        SetID(id);
+    }
+
+    void SetID(int id)
+    {
+        m_ID = id;
+    }
+
+    int GetID()
+    {
+        return m_ID;
+    }
 };
 
 #endif

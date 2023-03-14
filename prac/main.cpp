@@ -1,11 +1,12 @@
 #include "main.hpp"
 #include <iostream>
 #include <string>
+using namespace std;
 
 int main()
 {
-	Foo foo1; // initialization list
+    Simple simple(1);
+    cout << simple.GetID() << endl; // 2
 
-	std::cout << foo1.m_x << std::endl;
-	return 0;
+    return 0;
 }
