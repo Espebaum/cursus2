@@ -5,6 +5,6 @@ int        main(void)
 {
     std::cout << "hello\n";
 	std::fflush(stdout);
-	sleep(5);
+	sleep(2);
     return (0);
 }

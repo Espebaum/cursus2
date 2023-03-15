@@ -7,16 +7,21 @@ Zombie::Zombie()
     << BOLDWHITE << "has been worked" << std::endl;
 }
 
-Zombie::Zombie(std::string name)
-{
-    this->name = name;
-    std::cout<< BOLDWHITE << "The " << BOLDRED << "ZOMBIE CONSTRUCTOR " \
-    << BOLDWHITE << "has been worked" << std::endl;
-}
+// Zombie::Zombie(std::string name)
+// {
+//     this->name = name;
+//     std::cout<< BOLDWHITE << "The " << BOLDRED << "ZOMBIE CONSTRUCTOR " \
+//     << BOLDWHITE << "has been worked" << std::endl;
+// }
 
 Zombie::~Zombie(void)
 {
     std::cout << BOLDGREEN << this->name << BOLDRED << " is dead" << BOLDWHITE << std::endl;
+}
+
+void    Zombie::setName(std::string s)
+{
+    this->name = s;
 }
 
 void    Zombie::announce(void)
