@@ -31,7 +31,7 @@ int main(void)
 	std::cout << std::endl;
 
 	std::cout << BOLDWHITE << "----------------------------------------------------------" << std::endl;
-	std::cout << BOLDYELLOW << "            Random Zombie has been appeared!!!" << std::endl;
+	std::cout << BOLDYELLOW << "               Random Zombie is appearing!!!" << std::endl;
 	std::cout << BOLDWHITE << "----------------------------------------------------------" << std::endl;
 	randomChump("Random Zombie");
 	std::cout << std::endl;
