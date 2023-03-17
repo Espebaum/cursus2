@@ -21,7 +21,6 @@ class HumanB
 		Weapon *param;
 		std::string name;
 	public:
-		HumanB();
 		HumanB(std::string name);
 		~HumanB();
 		void setWeapon(Weapon &param);

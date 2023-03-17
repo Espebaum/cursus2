@@ -12,10 +12,8 @@
 int main(void)
 {
 	std::string		brain = "HI THIS IS BRAIN";
-	std::string		*stringPTR;
+	std::string		*stringPTR = &brain;
 	std::string&	stringREF = brain;
-
-	stringPTR = &brain;
 
 	std::cout << BOLDWHITE << "Brain     Address : " << BOLDBLUE << &brain << std::endl;
 	std::cout << BOLDWHITE << "stringPTR Address : " << BOLDBLUE << stringPTR << std::endl;

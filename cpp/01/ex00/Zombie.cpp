@@ -13,7 +13,7 @@ Zombie::Zombie(std::string name)
     std::cout<< BOLDWHITE << "The " << BOLDRED << "ZOMBIE CONSTRUCTOR " \
     << BOLDWHITE << "has been worked" << std::endl;
 }
-
+    
 Zombie::~Zombie(void)
 {
     std::cout << BOLDGREEN << this->name << BOLDRED << " is dead" << BOLDWHITE << std::endl;

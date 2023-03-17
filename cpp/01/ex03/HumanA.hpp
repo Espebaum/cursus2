@@ -18,10 +18,9 @@
 class HumanA
 {
 	private:
-		Weapon *param;
+		Weapon &param;
 		std::string name;
 	public:
-		HumanA();
 		HumanA(std::string name, Weapon &weapon);
 		~HumanA();
 		void attack();

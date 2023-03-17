@@ -2,6 +2,9 @@
 
 // void	leakcheck()
 // {
+// 	std::cout << std::endl << BOLDWHITE << "----------------" << std::endl;
+// 	std::cout << BOLDCYAN << "leak checking..." << std::endl;
+// 	std::cout << BOLDWHITE << "----------------" << RESET << std::endl;
 // 	system("leaks Zombie");
 // }
 
@@ -28,6 +31,8 @@ int main(void)
 	
 	Zombie	*heap = newZombie("Heap Zombie");
 	heap->announce();
+	Zombie	*h2 = new Zombie;
+	h2->announce();
 	std::cout << std::endl;
 
 	std::cout << BOLDWHITE << "----------------------------------------------------------" << std::endl;
@@ -37,9 +42,10 @@ int main(void)
 	std::cout << std::endl;
 	
 	std::cout << BOLDWHITE << "----------------------------------------------------------" << std::endl;
-	std::cout << BOLDYELLOW << "     Someone has detroyed Zombie constructed in heap..." << std::endl;
+	std::cout << BOLDYELLOW << "    Someone has detroyed Zombies constructed in heap..." << std::endl;
 	std::cout << BOLDWHITE << "----------------------------------------------------------" << std::endl;
 	delete heap;
+	delete h2;
 	std::cout << std::endl;
 
 	std::cout << BOLDWHITE << "----------------------------------------------------------" << std::endl;

@@ -1,10 +1,5 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB()
-{
-	std::cout << "but no one appeared..." << std::endl ;
-}
-
 HumanB::HumanB(std::string name)
 {
 	this->name = name;
@@ -12,9 +7,9 @@ HumanB::HumanB(std::string name)
 
 HumanB::~HumanB() {}
 
-void	HumanB::setWeapon(Weapon &club)
+void	HumanB::setWeapon(Weapon &weapon)
 {
-	this->param = &club;
+	this->param = &weapon;
 }
 
 std::string HumanB::isArmed(std::string s) const
