@@ -3,7 +3,7 @@
 Zombie::Zombie()
 {
     this->name = "Default Zombie";
-    std::cout<< BOLDWHITE << "The " << BOLDRED << "ZOMBIE CONSTRUCTOR " \
+    std::cout<< BOLDWHITE << "The " << BOLDRED << "DEFAULT ZOMBIE CONSTRUCTOR " \
     << BOLDWHITE << "has been worked" << std::endl;
 }
 
