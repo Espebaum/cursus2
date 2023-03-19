@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	std::ifstream ifs;
 	std::ofstream ofs;
 	
-	if (static_cast<int>(std::strlen(argv[1])) == 0 || s1.length() == 0 || s2.length() == 0)
+	if (std::strlen(argv[1]) == 0 || s1.length() == 0 || s2.length() == 0)
 	{
 		std::cerr << BOLDWHITE << "Error! String must have length more than 0" << std::endl;
 		return (1);
@@ -68,5 +68,7 @@ int main(int argc, char **argv)
 			break ;
 		ofs << std::endl;
 	}
+	ifs.close();
+	ofs.close();
 	return (0);
 }

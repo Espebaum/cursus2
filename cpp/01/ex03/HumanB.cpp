@@ -14,7 +14,7 @@ void	HumanB::setWeapon(Weapon &weapon)
 
 std::string HumanB::isArmed(std::string s) const
 {
-	if (s == "")
+	if (s.empty())
 		return "Fists";
 	return (s);
 }

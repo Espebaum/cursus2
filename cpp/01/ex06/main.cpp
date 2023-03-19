@@ -1,16 +1,7 @@
 #include "Harl.hpp"
 
-// void	leakcheck()
-// {
-// 	std::cout << std::endl << BOLDWHITE << "----------------" << std::endl;
-// 	std::cout << BOLDGREEN << "leak checking..." << std::endl;
-// 	std::cout << BOLDWHITE << "----------------" << RESET << std::endl;
-// 	system("leaks harlFilter");
-// }
-
 int	main(int argc, char **argv)
 {
-	// atexit(leakcheck);
 	if (argc == 1)
 	{
 		std::cerr << BOLDRED << "Error! Harl must do something!" << std::endl;

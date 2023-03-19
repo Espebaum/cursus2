@@ -1,10 +1,5 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon()
-{
-	this->type = "Fists";
-}
-
 Weapon::Weapon(std::string weapon)
 {
 	this->type = weapon;

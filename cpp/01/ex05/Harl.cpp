@@ -45,7 +45,7 @@ void	Harl::complain(std::string level)
 			com[i] = i;
 		sum += com[i];
 	}
-	
+
 	switch (sum)
 	{
 		case 1:
