@@ -24,7 +24,7 @@ fclean : clean
 
 re : fclean 
 	@make all
-	@echo "$(GREEN)[$(NAME)] Cleaned and rebuilt everything!\n$(DEF_COLOR)"
+	@echo "$(GREEN)[$(NAME)] Cleaned and rebuilt everything!\n$(DEFAULT)"
 
 .PHONY = all clean fclean re
 
