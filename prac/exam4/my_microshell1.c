@@ -1,6 +1,6 @@
 #include <unistd.h>
-#include <sys/wait.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include <string.h>
 
 int	ft_strlen(char *str)
@@ -8,16 +8,16 @@ int	ft_strlen(char *str)
 	int	cnt = 0;
 	while (*str++)
 		cnt++;
-	return cnt;
+	return (cnt);
 }
 
 void	ft_putstr(char *str)
 {
-	int	len = ft_strlen(str);
+	int len = ft_strlen(str);
 	write(2, str, len);
 }
 
-int	ft_execute(char **argv, int i, int tmp_fd, char **envp)
+int ft_execute(char **argv, int i, int tmp_fd, char **envp)
 {
 	argv[i] = NULL;
 	close(tmp_fd);
@@ -30,11 +30,11 @@ int	ft_execute(char **argv, int i, int tmp_fd, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	(void)	argc;
-	int		i = 0;
-	int		pid = 0;
-	int		tmp_fd = dup(0);
-	int		fd[2];
+	(void) argc;
+	int	i = 0;
+	int	pid = 0;
+	int	tmp_fd = dup(0);
+	int fd[2];
 
 	while (argv[i] && argv[i + 1])
 	{
@@ -45,15 +45,15 @@ int	main(int argc, char **argv, char **envp)
 		if (strcmp(argv[0], "cd") == 0)
 		{
 			if (i != 2)
-				ft_putstr("error: cd: bad argument\n");
+				ft_putstr("error: cd: bad arguments\n");
 			else if (chdir(argv[1]) != 0)
 			{
-				ft_putstr("error: cannot execute ");
+				ft_putstr("error: cannot change ");
 				ft_putstr(argv[1]);
 				ft_putstr("\n");
 			}
 		}
-		else if (argv != &argv[i] && (argv[i] == NULL || strcmp(argv[i], ";") == 0)) //last command
+		else if (argv != &argv[i] && (argv[i] == NULL || strcmp(argv[i], ";") == 0))
 		{
 			pid = fork();
 			if (pid < 0)
@@ -74,7 +74,7 @@ int	main(int argc, char **argv, char **envp)
 				tmp_fd = dup(0);
 			}
 		}
-		else if (argv != &argv[i] && strcmp(argv[i], "|") == 0) //first, mid command(open pipe)
+		else if (argv != &argv[i] && (strcmp(argv[i], "|") == 0))
 		{
 			if (pipe(fd) < 0)
 			{
@@ -101,7 +101,7 @@ int	main(int argc, char **argv, char **envp)
 				close(tmp_fd);
 				close(fd[1]);
 				waitpid(-1, 0, 0);
-				dup2(tmp_fd, fd[0]);
+				tmp_fd = dup(fd[0]);
 				close(fd[0]);
 			}
 		}

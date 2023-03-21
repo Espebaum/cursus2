@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **envp)
 	(void) argc;	//argc는 안씀
 	int	i = 0;		//반복문 돌릴 i
 	int	pid = 0;	//pid
-	int	tmp_fd = dup(0); //fd[0]으로 갖다 쓰거나, 표준 입력으로 갖다쓸 임시 fd
+	int	tmp_fd = dup(0); //fd[0]으로 갖다 쓰거나, 표준 입력
 	int fd[2];			//파이프 fd
 
 	while (argv[i] && argv[i + 1])
