@@ -23,12 +23,14 @@ class Fixed
 		Fixed(const int num);
 		Fixed(const float num);
 		Fixed(const Fixed &origin);
-		Fixed &operator=(const Fixed &origin);
-		~Fixed();
 		int getRawBits() const;
 		void setRawBits(int const raw);
 		float toFloat() const;
 		int toInt() const;
+		Fixed &operator=(const Fixed &origin);
+		~Fixed();
 };
+
+std::ostream	&operator<<(std::ostream &out, const Fixed &fix);
 
 #endif
