@@ -21,7 +21,7 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed &origin);
-		Fixed &operator=(const Fixed &origin);
+		Fixed &operator=(const Fixed &ref);
 		~Fixed();
 		int getRawBits() const;
 		void setRawBits(int const raw);

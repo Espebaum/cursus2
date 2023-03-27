@@ -27,7 +27,7 @@ class Fixed
 		void setRawBits(int const raw);
 		float toFloat() const;
 		int toInt() const;
-		Fixed &operator=(const Fixed &origin);
+		Fixed &operator=(const Fixed &ref);
 		~Fixed();
 };
 

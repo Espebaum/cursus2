@@ -41,11 +41,11 @@ class Fixed
 		bool operator<=(const Fixed &ref) const;
 		bool operator!=(const Fixed &ref) const;
 		bool operator==(const Fixed &ref) const;
-		Fixed &operator=(const Fixed &origin);
-		Fixed operator+(const Fixed &origin);
-		Fixed operator-(const Fixed &origin);
-		Fixed operator*(const Fixed &origin);
-		Fixed operator/(const Fixed &origin);
+		Fixed &operator=(const Fixed &ref);
+		Fixed operator+(const Fixed &ref);
+		Fixed operator-(const Fixed &ref);
+		Fixed operator*(const Fixed &ref);
+		Fixed operator/(const Fixed &ref);
 		Fixed &operator++();
 		const Fixed operator++(int);
 		Fixed &operator--();

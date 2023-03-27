@@ -1,5 +1,15 @@
 #include "Fixed.hpp"
 
+Fixed& Fixed::operator=(const Fixed &ref)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &ref)
+	{
+		this->fixed = ref.getRawBits();
+	}
+	return (*this);
+}
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
@@ -79,16 +89,6 @@ bool	Fixed::operator==(const Fixed &ref) const
 	return (this->getRawBits() == ref.getRawBits());
 }
 
-Fixed& Fixed::operator=(const Fixed &ref)
-{
-	// std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &ref)
-	{
-		this->fixed = ref.getRawBits();
-	}
-	return (*this);
-}
-
 Fixed	Fixed::operator+(const Fixed &ref)
 {
 	Fixed	ret(this->toFloat() + ref.toFloat());
@@ -113,30 +113,30 @@ Fixed	Fixed::operator/(const Fixed &ref)
 	return (ret);
 }
 
-Fixed&	Fixed::operator++()
+Fixed&	Fixed::operator++()			// Pre increment
 {
 	this->fixed++;
 	return (*this);
 }
 
-const Fixed	Fixed::operator++(int)
+const Fixed	Fixed::operator++(int) // Post increment 
 {
 	const Fixed	ret(*this);
 	this->fixed++;
-	return (ret); //this is not an Rvalue
+	return (ret); // destruct after line
 }
 
-Fixed&	Fixed::operator--()
+Fixed&	Fixed::operator--()		// Pre increment;
 {
 	this->fixed--;
 	return (*this);
 }
 
-const Fixed Fixed::operator--(int)
+const Fixed Fixed::operator--(int) // Post increment
 {
 	const Fixed	ret(*this);
 	this->fixed--;
-	return (ret);  //this is not an Rvalue
+	return (ret);  // destruct after line
 }
 
 Fixed&	Fixed::min(Fixed &ref1, Fixed &ref2)

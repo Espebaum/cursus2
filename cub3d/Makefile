@@ -1,47 +1,53 @@
-NAME = cub3D
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gyopark < gyopark@student.42seoul.kr>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/01/16 19:45:58 by gyopark           #+#    #+#              #
+#    Updated: 2023/03/25 17:31:33 by gyopark          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME		= cub3d
+
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror 
 MLX			= -L./mlx -lmlx -framework OpenGL -framework AppKit
 MLXDIR		= ./mlx
+FT_PRINTF	= ft_printf
+PRINTF_LIB	= libftprintf.a
 
-SRCS = main.c
-OBJS = $(SRCS:.c=.o)
+SRCS_MAN 	= main.c					\
+			  map_setting.c				\
+			  utils.c					\
+			  gnl/get_next_line.c		\
+			  gnl/get_next_line_utils.c	
 
-%.o : %.c
-	@echo "$(YELLOW) *** Generating object files ... *** $(DEFAULT)"
-	@$(CC) $(CFLAGS) $< -c
+OBJS_MAN 	= ${SRCS_MAN:.c=.o}
 
-$(NAME) : $(OBJS)
-	@make all -C $(MLXDIR)
-	@$(CC) $(CFLAGS) -o $(NAME) $(MLX) $(OBJS`)
-	@echo "$(GREEN) *** [$(NAME)] Linking Success *** $(DEFAULT)"
+$(NAME) : $(OBJS_MAN)
+		rm -f $(NAME)
+		make clean -C $(MLXDIR)
+		make fclean -C $(FT_PRINTF)		
+		make all -C $(MLXDIR)	
+		make all -C $(FT_PRINTF)
+		$(CC) $(CFLAGS) -o $(NAME) $(MLX) $^ $(FT_PRINTF)/$(PRINTF_LIB)
 
-all : $(NAME)
-
-clean : 
-	@echo "$(RED) *** Deleting objects ... *** $(DEFAULT)"
-	@rm -rf $(OBJS)
+all : $(OBJS_MAN)
 
 fclean : clean
-	@echo "$(RED) *** Deleting executable ... *** $(DEFAULT)"
-	@rm -rf $(NAME)
+		rm -f $(NAME)
+		make fclean -C $(FT_PRINTF)
 
-re : fclean
-	@make all
-	@echo "$(GREEN)[$(NAME)] Cleaned and rebuilt everything!\n$(DEFAULT)"
+clean :
+		rm -f $(OBJS_MAN) 
+		make clean -C $(FT_PRINTF)
+		make clean -C $(MLXDIR)
 
-.PHONY = all clean fclean re
+re : 
+	make fclean 
+	make all
 
-# ---------------------------------------------------------------------------- #
-# 								Define the colors								#
-# ---------------------------------------------------------------------------- #
-
-GRAY		=	\033[1;30m
-RED 		=	\033[1;31m
-GREEN		=	\033[1;32m
-YELLOW		=	\033[1;33m
-BLUE		=	\033[1;34m
-MAGENTA		=	\033[1;35m
-CYAN		=	\033[1;36m
-WHITE		=	\033[1;37m
-DEFAULT 	= 	\033[0m
+.PHONY : fclean clean re ft_printf libft all
