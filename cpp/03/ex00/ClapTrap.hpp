@@ -30,14 +30,15 @@ class ClapTrap
 
 		// getter-setter starts
 		std::string	getName() const;
-		void	setAttackDamage(int damage);
-		int		getAttackDamage() const;
+		void	showName() const;
 		int		getHitPoints() const;
-		void	setHitPointsMinus(int point);
 		void	setHitPointsPlus(int point);
+		void	setHitPointsMinus(int point);
 		int		getEnergyPoints() const;
 		void	setEnergyPoints();
-		void	showName() const;
+		int		getAttackDamage() const;
+		void	setAttackDamage(int damage);
+		void	showAllStatus();
 		// getter-setter ends
 		
 		//functions in subjects
