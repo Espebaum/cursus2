@@ -6,10 +6,10 @@
 #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
 #define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
 #define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
-#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
 #define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
 #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
 
 #include <iostream>
 #include <string>
@@ -17,7 +17,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string		name;
 		unsigned int	HitPoints; // represent the health of Clap-Trap
 		unsigned int	EnergyPoints;
@@ -27,7 +27,7 @@ class ClapTrap
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &ref);
 		ClapTrap &operator=(const ClapTrap &ref);
-		~ClapTrap();
+		virtual ~ClapTrap();
 
 		// getter-setter
 		std::string	getName() const;
@@ -41,11 +41,14 @@ class ClapTrap
 		void	showAllStatus();
 		
 		//functions in subjects
-		void	attack(const std::string& target);
+		virtual void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
 };
 
 std::string	ridrspace(std::string input);
+
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 #endif

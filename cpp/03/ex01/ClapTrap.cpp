@@ -6,18 +6,21 @@ ClapTrap::ClapTrap()
 	this->HitPoints = 10;
 	this->EnergyPoints = 10;
 	this->AttackDamage = 0;
-	std::cout << BOLDWHITE << this->name << " : " << "It's not good to have name \"DEFAULT\"..." << std::endl;
+	std::cout << BOLDWHITE << "-------------------------------------------------------------" << std::endl;
+	std::cout << BOLDBLUE << "      CLAP-TRAP appears far away from the Wilderness..." << std::endl;
+	std::cout << BOLDWHITE << "-------------------------------------------------------------" << std::endl;
+	std::cout << BOLDYELLOW << "Defualt" << " : " << BOLDRED << "LET'S TEAR THIS PLANET A NEW ***HOLE! YAAAAAAGHHHHH" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << BOLDWHITE << "-------------------------------------------------------------" << std::endl;
-	std::cout << BOLDBLUE << "      CLAP-TRAP appears far away from the Wilderness..." << std::endl;
-	std::cout << BOLDWHITE << "-------------------------------------------------------------" << std::endl;
 	this->name = name;
 	this->HitPoints = 10;
 	this->EnergyPoints = 10;
 	this->AttackDamage = 0;
+	std::cout << BOLDWHITE << "-------------------------------------------------------------" << std::endl;
+	std::cout << BOLDBLUE << "      CLAP-TRAP appears far away from the Wilderness..." << std::endl;
+	std::cout << BOLDWHITE << "-------------------------------------------------------------" << std::endl;
 	std::cout << BOLDYELLOW << this->name << " : " << BOLDRED << "LET'S TEAR THIS PLANET A NEW ***HOLE! YAAAAAAGHHHHH" << std::endl;
 }
 
@@ -87,13 +90,12 @@ void	ClapTrap::setEnergyPoints()
 
 void	ClapTrap::showAllStatus()
 {
-	std::cout << std::endl;
 	std::cout << BOLDYELLOW << this->name << "\'s" << BOLDBLUE << " STATUS" << std::endl;
 	std::cout << BOLDWHITE << "My name is " << BOLDYELLOW << this->getName() << BOLDWHITE << "!!!" << std::endl;
 	std::cout << BOLDYELLOW << this->name << "\'s" << BOLDWHITE << " HP : "<< getHitPoints() << std::endl;
 	std::cout << BOLDYELLOW << this->name << "\'s" << BOLDWHITE << " Energy points : "<< getEnergyPoints() << std::endl;
 	std::cout << BOLDYELLOW << this->name << "\'s" << BOLDWHITE << " Attack damage : "<< getAttackDamage() << std::endl;
-
+	std::cout << std::endl;
 }
 
 //---------------- Getter & Setter functions end -------------------//
@@ -115,6 +117,7 @@ void	ClapTrap::attack(const std::string& target)
 		std::cout << BOLDYELLOW << this->name << BOLDWHITE << " : " << "Oh, I missed it..." << std::endl;
 	}
 	setEnergyPoints();
+	std::cout << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -145,22 +148,23 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << BOLDYELLOW << this->name << BOLDWHITE << " : " << "I need Energy to move, FOOL!!" << std::endl;
 		return ;
 	}
-	if (this->HitPoints >= 10)
+	if (this->HitPoints >= 100)
 	{
 		std::cout << BOLDYELLOW << this->name << BOLDWHITE << " : " << "Hey, I'm full of HP!!" << std::endl;
-		this->HitPoints = 10;
+		this->HitPoints = 100;
 		return ;
 	}
 	this->setHitPointsPlus(amount);
-	if (this->HitPoints >= 10)
+	if (this->HitPoints >= 100)
 	{
-		amount = 3 - (this->getHitPoints() - 10);
-		this->HitPoints = 10;
+		amount = 3 - (this->getHitPoints() - 100);
+		this->HitPoints = 100;
 	}
 	std::cout << BOLDYELLOW << this->name << BOLDCYAN << " repaired " << BOLDYELLOW << "itself" << BOLDCYAN \
 	", so it gains " << BOLDGREEN << amount << BOLDCYAN << " Hit points..." << std::endl;
 	std::cout << BOLDYELLOW << this->name << " : " << BOLDBLUE << "OK, it's fine" << RESET << std::endl;
 	setEnergyPoints();
+	std::cout << std::endl;
 }
 
 ClapTrap::~ClapTrap()
@@ -181,3 +185,4 @@ std::string	ridrspace(std::string input)
 	}
 	return (input);
 }
+

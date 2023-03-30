@@ -1,21 +1,13 @@
 #include "ClapTrap.hpp"
 
-std::string	ridrspace(std::string input)
-{
-	for(int i = 0; i < static_cast<int>(input.length()); i++)
-	{
-		if (std::isspace(input[i]))
-			return (input.substr(0, i));
-	}
-	return (input);
-}
-
-
 int	main()
 {
 	std::string	input;
 	const std::string	target = "DUMMY";
 	ClapTrap	Clap("CL4P-TP");
+	// ClapTrap	Clap2(Clap);
+	// ClapTrap	Clap3;
+	// Clap3 = Clap;
 
 	while (1)
 	{
@@ -26,7 +18,8 @@ int	main()
 		std::getline(std::cin >> std::ws, input);
 		if (std::cin.eof())
 		{
-			std::cout << BOLDYELLOW << Clap.getName() << BOLDWHITE << " : " << BOLDRED << "so, you pushed the SELF-DESTURCTION BUTTON, Huh?," \
+			std::cout << BOLDYELLOW << Clap.getName() << BOLDWHITE << " : " << \
+			BOLDRED << "so, you pushed the SELF-DESTURCTION BUTTON, Huh?," \
 			<< " then I'm gonna DESTROY this PROGRAM!!!" << std::endl;
 			exit (0);
 		}
@@ -48,10 +41,9 @@ int	main()
 			Clap.takeDamage(rand() % 10);
 			if (Clap.getHitPoints() <= 0)
 			{
-				std::cout << BOLDYELLOW << Clap.getName() << \
-				BOLDWHITE << " : " << BOLDRED << "Oh, I'm out of HP..." << std::endl;
 				break ;
 			}
+
 		}
 		else if (input == "EXIT")
 		{
@@ -59,7 +51,8 @@ int	main()
 		}
 		else
 		{
-			std::cout << BOLDYELLOW << Clap.getName() << BOLDWHITE << " : " << BOLDRED << "CHOOSE ONE OF COMMANDS YOU FOOL!!!" << std::endl;
+			std::cout << BOLDYELLOW << Clap.getName() << BOLDWHITE << " : " << \
+			BOLDRED << "CHOOSE ONE OF COMMANDS YOU FOOL!!!" << std::endl;
 		}
 	}
 	return (0);
