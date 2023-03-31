@@ -3,11 +3,13 @@
 int	main()
 {
 	const std::string	target = "DUMMY";
-	// fragTrap	frag1;
+	// FragTrap	frag1;
 	ClapTrap*	clap;
 	FragTrap	frag2("FRAG-TRAP");
 	clap = &frag2;
 
+	// clap->highFivesGuy(); //this command occurs Error!
+	clap->attack(target); //but this command does not occur Error
 	frag2.attack(target);
 	frag2.takeDamage(rand() % 10);
 	frag2.showAllStatus();

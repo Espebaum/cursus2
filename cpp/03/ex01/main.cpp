@@ -8,6 +8,8 @@ int	main()
 	ScavTrap	scav2("SCAV-TRAP");
 	clap = &scav2;
 
+	// clap->guardGate(); //this command occurs Error!
+	clap->attack(target); //but this command does not occur Error
 	scav2.guardGate();
 	scav2.attack(target);
 	scav2.takeDamage(rand() % 10);

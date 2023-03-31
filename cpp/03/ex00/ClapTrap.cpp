@@ -41,7 +41,6 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap &ref)
 }
 
 //---------------- Getter & Setter functions start -----------------//
-
 std::string	ClapTrap::getName() const
 {
 	return (this->name);
@@ -95,7 +94,6 @@ void	ClapTrap::showAllStatus()
 	std::cout << BOLDYELLOW << this->name << "\'s" << BOLDWHITE << " Attack damage : "<< getAttackDamage() << std::endl;
 
 }
-
 //---------------- Getter & Setter functions end -------------------//
 
 
