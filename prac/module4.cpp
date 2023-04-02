@@ -42,3 +42,4 @@ int main(){
 	delete	c;
 	delete	cc;
 }
+
