@@ -16,7 +16,7 @@ class Animal
 		Animal(const Animal &ref);
 		Animal &operator=(const Animal &ref);
 		virtual ~Animal();
-		virtual void	makeSound();
+		virtual void	makeSound() = 0;
 		virtual	std::string	getType() const;
 		virtual std::string	getThink(int i) const;
 		virtual void	setThink(int i, std::string	content);

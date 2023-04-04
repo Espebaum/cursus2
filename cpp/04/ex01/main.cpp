@@ -1,39 +1,63 @@
 #include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongAnimal.hpp"
 
 // void	leakcheck()
 // {
 // 	std::cout << BOLDWHITE << std::endl;
-// 	system("leaks -q ex00");
+// 	system("leaks -q ex01");
 // 	std::cout << std::endl;
 // }
 
 int main()
 {
 	// atexit(leakcheck);
+	const	Animal *A[4];
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 
-	const Animal*	meta = new Animal();
-	const Animal*	j = new Dog();
-	const Animal*	i = new Cat();
+	for (int i = 0; i < 4; i++)
+	{
+		if (i % 2)
+		{
+			std::cout << BOLDYELLOW << i + 1 << "th Dog" << RESET << std::endl;
+			A[i] = new Dog();
+		}
+		else
+		{
+			std::cout << BOLDMAGENTA << i + 1 << "th Cat" << RESET << std::endl;
+			A[i] = new Cat();
+		}
+	}
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	std::cout << std::endl;
+	std::cout << BOLDWHITE << "--------------------------------------" << std::endl;
+	std::cout << BOLDWHITE << "what is the type of j?" << std::endl;
+	std::cout << "It's a " << j->getType() << "!!" << std::endl;
+	std::cout << BOLDWHITE <<  "--------------------------------------" << std::endl;
+	std::cout << BOLDWHITE << "what is j thinking about?" << std::endl;
+	std::cout << j->getThink(50) << std::endl;
+	std::cout << "--------------------------------------" << std::endl;
+	// std::cout << j->setThink(50, "FOOD") << std::endl; //j is const
 
-	i->makeSound();	//will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-
-	const WrongAnimal*	WrongMeta = new WrongAnimal(); 
-	const WrongAnimal*	k = new WrongCat();
+	std::cout << "Seems like animals are leaving..." << std::endl;
 	
-	k->makeSound();
-	WrongMeta->makeSound();
+	delete j; //should not create a leak
+	delete i;
 
-	delete	i;	//will output the cat sound!
-	delete	j;
-	delete	meta;
-	delete	k;
-	delete	WrongMeta;
+	for (int i = 0; i < 4; i++)
+	{
+		if (i % 2)
+		{
+			std::cout << BOLDYELLOW << i + 1 << "th Dog" << RESET << std::endl;
+			delete	A[i];
+		}
+		else
+		{
+			std::cout << BOLDMAGENTA << i + 1 << "th Cat" << RESET << std::endl;
+			delete	A[i];
+		}
+	}
 
 	return 0;
 }
