@@ -27,8 +27,4 @@ class Animal
 		virtual	std::string	getType() const;
 };
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongAnimal.hpp"
-
 #endif

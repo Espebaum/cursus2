@@ -16,8 +16,8 @@ int main()
 	// Animal	ani; // it occurs error because Animal is Abstract Class
 	Animal	*doggy_ptr;
 	Animal	*kitty_ptr;
-	Dog	doggy;
-	Cat	kitty;
+	Dog		doggy;
+	Cat		kitty;
 	doggy_ptr = &doggy;
 	kitty_ptr = &kitty;
 
@@ -27,6 +27,7 @@ int main()
 
 	doggy.setThink(1, "MEOW?");
 	doggy_ptr->setThink(2, "POINTER??");
+	
 	kitty.setThink(1, "BARK?");
 	kitty_ptr->setThink(2, "POINTER??");
 		

@@ -1,7 +1,7 @@
-NAME = ex02
+NAME = ex03
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors -g #-fsanitize=address
+SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp

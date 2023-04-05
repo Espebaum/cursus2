@@ -36,7 +36,7 @@ Dog&	Dog::operator=(const Dog &ref)
 	return (*this);
 }
 
-void	Dog::makeSound()
+void	Dog::makeSound() const
 {
 	std::cout << BOLDYELLOW;
 	std::cout << "bow-Wow!! bow-Wow!!" << std::endl;

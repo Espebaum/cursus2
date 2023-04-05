@@ -35,7 +35,7 @@ Animal&	Animal::operator=(const Animal &ref)
 	return (*this);
 }
 
-void	Animal::makeSound()
+void	Animal::makeSound() const
 {
 	std::cout << BOLDGREEN;
 	std::cout << "I can hear a sound of Animal" << std::endl;

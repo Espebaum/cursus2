@@ -32,7 +32,7 @@ WrongAnimal&	WrongAnimal::operator=(const WrongAnimal &ref)
 	return (*this);
 }
 
-void	WrongAnimal::makeSound()
+void	WrongAnimal::makeSound() const
 {
 	std::cout << BOLDRED;
 	std::cout << "I can hear a sound of something" << std::endl;

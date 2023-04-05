@@ -16,7 +16,7 @@ class Dog : public Animal
 		Dog(const Dog &ref);
 		Dog &operator=(const Dog &ref);
 		~Dog();
-		void	makeSound();
+		void	makeSound() const;
 		std::string	getType() const;
 		std::string	getThink(int i) const;
 		void	setThink(int i, std::string	content);

@@ -13,9 +13,9 @@
 int main()
 {
 	// atexit(leakcheck);
-	const	Animal *A[4];
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal*	A[4];
+	const Animal*	j = new Dog();
+	const Animal*	i = new Cat();
 
 	for (int i = 0; i < 4; i++)
 	{
