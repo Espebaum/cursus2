@@ -1,9 +1,11 @@
 #include "Cure.hpp"
 #include "ICharacter.hpp"
+#include "Color.hpp"
 
 Cure::Cure() 
 {
-	std::cout << "Cure construct" << std::endl;
+	// std::cout << BOLDGREEN << std::endl;
+	// std::cout << "Cure construct" << std::endl;
 	this->type_ = "cure";
 }
 
@@ -21,7 +23,12 @@ Cure&	Cure::operator=(const Cure &ref)
 	return (*this);
 }
 
-Cure::~Cure() {}
+Cure::~Cure()
+{
+	// std::cout << BOLDRED << std::endl;
+	// std::cout << "vanishing " << BOLDGREEN << "cure" \
+	// << BOLDRED << " power" << std::endl;
+}
 
 AMateria*	Cure::clone() const
 {

@@ -1,4 +1,5 @@
 #include "MateriaSource.hpp"
+#include "Color.hpp"
 
 // Applying OCCF
 MateriaSource::MateriaSource() 
@@ -45,11 +46,21 @@ void MateriaSource::learnMateria(AMateria *source)
 		}
 		if (i == 3)
 		{
-			std::cout << "Power Source is full" << std::endl;
+			std::cout << BOLDRED << std::endl;
+			std::cout << "Power Source is full" << RESET << std::endl;
 			delete	source;
 			return ;
 		}
 	}
+	// for (int i = 0; i < 4; i++)
+	// {
+	// 	std::cout << BOLDMAGENTA << std::endl;
+	// 	if (this->power[i] != NULL)
+	// 		std::cout << i << "th power slot is " << this->power[i]->getType() << std::endl;
+	// 	else
+	// 		std::cout << i << "th power slot is EMPTY" << std::endl;
+	// 	std::cout << RESET;
+	// }
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)

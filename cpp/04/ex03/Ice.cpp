@@ -1,9 +1,11 @@
 #include "Ice.hpp"
 #include "ICharacter.hpp"
+#include "Color.hpp"
 
 Ice::Ice() 
 {
-	std::cout << "ice construct" << std::endl;
+	// std::cout << BOLDGREEN << std::endl;
+	// std::cout << "ice construct" << std::endl;
 	this->type_ = "ice";
 }
 
@@ -21,7 +23,12 @@ Ice&	Ice::operator=(const Ice &ref)
 	return (*this);
 }
 
-Ice::~Ice() {}
+Ice::~Ice()
+{
+	// std::cout << BOLDRED << std::endl;
+	// std::cout << "Vanishing " << BOLDBLUE << "Ice" \
+	// << BOLDRED << " power" << std::endl;
+}
 
 AMateria*	Ice::clone() const
 {

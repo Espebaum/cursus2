@@ -1,29 +1,50 @@
 #include "Character.hpp"
 #include "AMateria.hpp"
+#include "Color.hpp"
 
 Character::Character()
 {
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; i++)
 		this->slot[i] = NULL;
 }
 
 Character::Character(std::string name_)
 {
 	this->name = name_;
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 4; i++)
 		this->slot[i] = NULL;
 }
 
-Character::Character(const Character &ref) //깊은 복사
+Character::Character(const Character &ref)
 {
-	*this = ref;
+	std::cout << BOLDYELLOW << "Copying Character" <<std::endl;
+	this->name = ref.getName();
+	for (int i = 0; i < 4; i++)
+	{
+		AMateria	*copy;
+		if (ref.slot[i] != NULL)
+			copy = ref.slot[i]->clone();
+		else
+			copy = NULL;
+		this->slot[i] = copy;
+	}
 }
 
-Character&  Character::operator=(const Character &ref) //깊은 복사
+Character&  Character::operator=(const Character &ref)
 {
+	std::cout << BOLDYELLOW << "Assigning Character" <<std::endl;
 	if (this != &ref)
 	{	
 		this->name = ref.getName();
+		for (int i = 0; i < 4; i++)
+		{
+			AMateria	*copy;
+			if (ref.slot[i] != NULL)
+				copy = ref.slot[i]->clone();
+			else
+				copy = NULL;
+			this->slot[i] = copy;
+		}
 	}
 	return (*this);
 }
@@ -40,51 +61,84 @@ void	Character::equip(AMateria* m)
 		std::cout << "Is it Ice or Cure?" << std::endl;
 		return ;
 	}
-	if ((m->getType() != "cure" && m->getType() != "ice"))
-	{
-		std::cout << "Cannot equip " << m->getType() << \
-		"It must be Cure or Ice" << std::endl;
-		return ;
-	}
 	int	available_slot = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->slot[i] == NULL)
 		{
-			this->slot[i] = m;
+			AMateria	*item = m->clone();
+			this->slot[i] = item;
 			available_slot = i;
 			break ;
 		}
 		if (i == 3)
 		{
+			std::cout << BOLDRED;
 			std::cout << "Inventory is full!" << std::endl;
+			return ;
 		}
 	}
-	std::cout << "Equipping " << available_slot << \
-	"th slot " << m->getType() << std::endl;
+
+	// std::cout << "Equipping " << available_slot << \
+	// "th slot " << m->getType() << std::endl;
+	
+	// for (int i = 0; i < 4; i++)
+	// {
+	// 	std::cout << BOLDWHITE;
+	// 	if (this->slot[i] != NULL)
+	// 		std::cout << "My " << i << "th slot is " << \
+	// 		this->slot[i]->getType() << std::endl;
+	// 	else
+	// 		std::cout << "My " << i << "th slot is empty" << std::endl;
+	// }
+	// std::cout << RESET;
 }
 
 void	Character::unequip(int idx)
 {
-	std::cout << "unequipping" << this->slot[idx]->getType() << \
-	std::endl;
-	this->slot[idx]->setType("");
+	if (idx > 3)
+	{
+		std::cout << "I only have 4 slot!" << std::endl; 
+		return ;
+	}
+	std::cout << BOLDCYAN;
+	std::cout << "unequipping " << idx << "th slot (" \
+	<< this->slot[idx]->getType() << ")" << std::endl;
+	delete this->slot[idx];
+	this->slot[idx] = NULL;
+
+	// for (int i = 0; i < 4; i++)
+	// {
+	// 	std::cout << BOLDWHITE;
+	// 	if (this->slot[i] != NULL)
+	// 		std::cout << "My " << i << "th slot is " << \
+	// 		this->slot[i]->getType() << std::endl;
+	// 	else
+	// 		std::cout << "My " << i << "th slot is empty" << std::endl;
+	// }
+	// std::cout << RESET;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	std::cout << "num" << idx << " : ";
 	if (idx > 3)
 	{
 		std::cout << "There's no slot after 4!" << std::endl;
 		return ;
 	}
-	if (slot[idx] == NULL)
+	if (this->slot[idx] == NULL)
 	{
-		std::cout << "I cannot use that" << std::endl;
+		std::cout << "There's no Materia in my slot!" << std::endl;
 		return ;
 	}
 	this->slot[idx]->use(target);
 }
 
-Character::~Character() {}
+Character::~Character()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		delete this->slot[i];
+		this->slot[i] = NULL;
+	}
+}
