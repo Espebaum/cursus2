@@ -1,7 +1,7 @@
-NAME = ex00
+NAME = Bureaucrat
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS = main.cpp Bureaucrat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp
@@ -18,26 +18,25 @@ clean :
 	@echo "$(RED) *** Deleting objects ... *** $(DEFAULT)"
 	@rm -rf $(OBJS)
 
-fclean : clean
+fclean : 
 	@echo "$(RED) *** Deleting executable ... *** $(DEFAULT)"
 	@rm -rf $(NAME)
 
 re : fclean
 	@make all
-	@echo "$(GREEN)[$(NAME)] Cleaned and rebuilt everything!\n$(DEFAULT)"
+	@echo "$(GREEN)[$(NAME)] Cleaned and rebuilt everything *** $(DEFAULT)"
 
 .PHONY = all clean fclean re
 
-# ---------------------------------------------------------------------------- #
-# 								Define the colors								#
-# ---------------------------------------------------------------------------- #
-
+# ---------------------------------------------------------------------------#
+#                             Define the colors                              #
+# ---------------------------------------------------------------------------#
 GRAY		=	\033[1;30m
-RED 		=	\033[1;31m
+RED			=	\033[1;31m
 GREEN		=	\033[1;32m
 YELLOW		=	\033[1;33m
 BLUE		=	\033[1;34m
 MAGENTA		=	\033[1;35m
 CYAN		=	\033[1;36m
 WHITE		=	\033[1;37m
-DEFAULT 	= 	\033[0m
+DEFAULT		=	\033[1;0m

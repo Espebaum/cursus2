@@ -17,7 +17,7 @@ int main(void)
 
 	std::cout << BOLDWHITE << "Brain     Address : " << BOLDBLUE << &brain << std::endl;
 	std::cout << BOLDWHITE << "stringPTR Address : " << BOLDBLUE << stringPTR << std::endl;
-	std::cout << BOLDWHITE<< "stringREF Address : " << BOLDBLUE << &stringREF << std::endl;
+	std::cout << BOLDWHITE << "stringREF Address : " << BOLDBLUE << &stringREF << std::endl;
 
 	std::cout << std::endl;
 
