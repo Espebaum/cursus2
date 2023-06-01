@@ -2,14 +2,25 @@
 
 int main()
 {
-    try
-    {
-        Bureaucrat  bur1("James", 200);
-        Bureaucrat  bur2("Jane", 150);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
+	try
+	{
+		try
+		{
+			Bureaucrat	bur1("John", 0);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr<<BOLDRED<<e.what()<<std::endl;
+		}
+		Bureaucrat	freshman("Fred", 149);
+		Bureaucrat	principle("Edward", 2);
+		freshman.decrementGrade();
+		principle.incrementGrade();
+		std::cout<<freshman<<std::endl<<principle<<std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr<<BOLDRED<<e.what()<<std::endl;
+	}
+	return (0);
 }
