@@ -25,25 +25,25 @@ Form& Form::operator=(const Form &ref)
 	return (*this);
 }
 
-std::string Form::getName() const
-{
-	return (this->name);
-}
+// std::string Form::getName() const
+// {
+// 	return (this->name);
+// }
 
-bool Form::getIndicator() const
-{
-	return (this->indicator);
-}
+// bool Form::getIndicator() const
+// {
+// 	return (this->indicator);
+// }
 
-int Form::getGradeSigned() const
-{
-	return (this->gradeSigned);
-}
+// int Form::getGradeSigned() const
+// {
+// 	return (this->gradeSigned);
+// }
 
-int Form::getGradeExecute() const
-{
-	return (this->gradeExecute);
-}
+// int Form::getGradeExecute() const
+// {
+// 	return (this->gradeExecute);
+// }
 
 const char *Form::GradeTooHighException::what(void) const throw()
 {
