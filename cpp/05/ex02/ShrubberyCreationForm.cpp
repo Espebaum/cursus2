@@ -27,9 +27,22 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
+	std::cout<<executor.getName()<<std::endl;
 	std::ofstream	ofs("<" + getName() + ">_shrubbery", std::ofstream::out | std::ofstream::trunc);
 	//std::ofstream::out -> file to write, std::ofstream::trunc -> if it exists, erase it.
-	std::string	shrubbery = "berry";
+	
+	std::string shrubbery =
+	"               ,@@@@@@@,\n"
+	"       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
+	"    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
+	"   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
+	"   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
+	"   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
+	"   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+	"       |o|        | |         | |\n"
+	"       |.|        | |         | |\n"
+	"    \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_";
+	
 	ofs<<shrubbery;
 	ofs.close();
 }

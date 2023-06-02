@@ -28,6 +28,7 @@ int main()
 		
 		ShrubberyCreationForm	form("Test");
 		form.beSigned(bur);
+
 		form.execute(bur);
 	}
 	catch (std::exception &e)
