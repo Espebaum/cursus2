@@ -15,7 +15,7 @@
 #define BOLDCYAN    "\033[1m\033[36m"
 #define BOLDWHITE   "\033[1m\033[37m"
 
-class	Form;
+class	AForm;
 
 class Bureaucrat
 {
@@ -30,7 +30,7 @@ class Bureaucrat
 		int	getGrade() const;
 		void incrementGrade();
 		void decrementGrade();
-		void signForm(const Form &ref);
+		void signForm(const AForm &ref);
 		Bureaucrat& operator<<(const Bureaucrat &ref);
 		class GradeTooHighException : public std::exception
 		{

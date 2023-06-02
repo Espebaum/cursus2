@@ -1,22 +1,26 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : name("Default"), indicator(0), gradeSigned(150), gradeExecute(150) {}
+// ----  Functions in OCCF ---- //
+AForm::AForm() \
+	: type("Unknown"), name("Default"), indicator(0), gradeSigned(150), gradeExecute(150) {}
 
-Form::~Form() {}
-
-Form::Form(std::string name, int grade) : name(name), indicator(0), gradeSigned(grade), gradeExecute(grade)
+AForm::AForm(std::string name, int signGrade, int executeGrade) \
+	: type("Unknown"), name(name), indicator(0), gradeSigned(signGrade), gradeExecute(executeGrade)
 {
-	if (grade < 1)
-		throw Form::GradeTooHighException();
-	else if (grade > 150)
-		throw Form::GradeTooLowException();
+	if (signGrade < 1 || executeGrade < 1)
+		throw AForm::GradeTooHighException();
+	else if (signGrade > 150 || executeGrade > 150)
+		throw AForm::GradeTooLowException();
+
+	std::cout << "Ok, There's an empty sheet" << std::endl;
 }
 
-Form::Form(const Form &ref) : name(ref.name), indicator(ref.indicator), gradeSigned(ref.gradeSigned), gradeExecute(ref.gradeExecute) {}
+AForm::AForm(const AForm &ref) \
+	: name(ref.name), indicator(ref.indicator), gradeSigned(ref.gradeSigned), gradeExecute(ref.gradeExecute) {}
 
 //Cannot overload operator= properly because of constant member variables
-Form& Form::operator=(const Form &ref)
+AForm& AForm::operator=(const AForm &ref)
 {
 	if (this != &ref)
 	{
@@ -25,44 +29,50 @@ Form& Form::operator=(const Form &ref)
 	return (*this);
 }
 
-// std::string Form::getName() const
-// {
-// 	return (this->name);
-// }
-
-// bool Form::getIndicator() const
-// {
-// 	return (this->indicator);
-// }
-
-// int Form::getGradeSigned() const
-// {
-// 	return (this->gradeSigned);
-// }
-
-// int Form::getGradeExecute() const
-// {
-// 	return (this->gradeExecute);
-// }
-
-const char *Form::GradeTooHighException::what(void) const throw()
+// ---- Other Functions ---- //
+void	AForm::setType(const std::string type_)
 {
-	return ("Form's grade is too high to be signed");
+	*(const_cast<std::string*>(&(this->type))) = type_; 
 }
 
-const char *Form::GradeTooLowException::what(void) const throw()
+std::string AForm::getName() const
 {
-	return ("Form's grade is too low to be signed");
+	return (this->name);
 }
 
-void	Form::beSigned(const Bureaucrat &ref)
+bool AForm::getIndicator() const
+{
+	return (this->indicator);
+}
+
+int AForm::getGradeSigned() const
+{
+	return (this->gradeSigned);
+}
+
+int AForm::getGradeExecute() const
+{
+	return (this->gradeExecute);
+}
+
+const char *AForm::GradeTooHighException::what(void) const throw()
+{
+	return ("AForm's grade is too high to be signed");
+}
+
+const char *AForm::GradeTooLowException::what(void) const throw()
+{
+	return ("AForm's grade is too low to be signed");
+}
+
+void	AForm::beSigned(const Bureaucrat &ref)
 {
 	int	grade = ref.getGrade();
 
 	if (grade < 0)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	else if (grade > 150)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	
 	if ((grade <= this->getGradeSigned()) && (grade <= this->getGradeExecute()))
 		this->indicator = 1;
@@ -76,7 +86,7 @@ void	printLine(int line)
 	}
 }
 
-std::ostream&	operator<<(std::ostream &os, const Form& ref)
+std::ostream&	operator<<(std::ostream &os, const AForm& ref)
 {
 	std::string	str = "| Grade required to execute : ";
 	int	line = str.length() + 3; 

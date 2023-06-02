@@ -1,8 +1,9 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <iostream>
 # include <string>
+# include <fstream>
 # include <exception>
 
 #define RESET		"\033[0m"
@@ -17,22 +18,33 @@
 
 class	Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
+		const std::string	type;
 		const std::string	name;
 		bool	indicator;
 		const int	gradeSigned;
 		const int	gradeExecute;
+	
 	public:
-		Form();
-		~Form();
-		Form(std::string name, int grade);
-		virtual std::string	getName() const = 0;
-		virtual bool	getIndicator() const = 0;
-		virtual int		getGradeSigned() const = 0;
-		virtual int		getGradeExecute() const = 0;
-		void	beSigned(const Bureaucrat &ref);
+		// Functions in OCCF
+		AForm();
+		AForm(std::string name, int signGrade, int executeGrade);
+		AForm& operator=(const AForm& ref);
+		AForm(const AForm& ref);
+		virtual ~AForm() {};
+
+		// Other Functions
+		void			setType(const std::string type);
+		std::string		getName() const;
+		bool			getIndicator() const;
+		int				getGradeSigned() const;
+		int				getGradeExecute() const;
+		void			beSigned(const Bureaucrat &ref);
+		virtual void	execute(Bureaucrat const &executor) const = 0;
+		
+		// Inner Classes define Exception 
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -43,11 +55,9 @@ class Form
 			public:
 				const char	*what() const throw();
 		};
-		Form(const Form& ref);
-		Form& operator=(const Form& ref);
 };
 
-std::ostream& operator<<(std::ostream &os, const Form& ref);
+std::ostream& operator<<(std::ostream &os, const AForm& ref);
 void	printLine(int line);
 
 #endif

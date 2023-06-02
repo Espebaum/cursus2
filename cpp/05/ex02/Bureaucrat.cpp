@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150) {}
 
@@ -59,7 +59,7 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 	return ("Grade is too Low...");
 }
 
-void	Bureaucrat::signForm(const Form &ref)
+void	Bureaucrat::signForm(const AForm &ref)
 {
 	if (ref.getIndicator() == 1)
 		std::cout << BOLDBLUE << this->getName() << BOLDCYAN << " signed " \
