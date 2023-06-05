@@ -55,16 +55,6 @@ int AForm::getGradeExecute() const
 	return (this->gradeExecute);
 }
 
-const char *AForm::GradeTooHighException::what(void) const throw()
-{
-	return ("AForm's grade is too high to be signed");
-}
-
-const char *AForm::GradeTooLowException::what(void) const throw()
-{
-	return ("AForm's grade is too low to be signed");
-}
-
 void	AForm::beSigned(const Bureaucrat &ref)
 {
 	int	grade = ref.getGrade();
@@ -78,6 +68,38 @@ void	AForm::beSigned(const Bureaucrat &ref)
 		this->indicator = 1;
 }
 
+// ---- Exceptions ---- //
+const char *AForm::GradeTooHighException::what(void) const throw()
+{
+	return ("Form's grade is too high to be signed");
+}
+
+const char *AForm::GradeTooLowException::what(void) const throw()
+{
+	return ("Form's grade is too low to be signed");
+}
+
+const char *AForm::DoesNotSignedException::what(void) const throw()
+{
+	return ("This form has not been signed");
+}
+
+const char *AForm::FileOpenErrorException::what(void) const throw()
+{
+	return ("File open error!");
+}
+
+void	AForm::executable(const Bureaucrat &executor) const
+{
+	int B_grade = executor.getGrade();
+
+	if (this->indicator == 0)
+		throw AForm::DoesNotSignedException();
+	if (B_grade > this->gradeExecute)
+		throw AForm::GradeTooHighException();
+}
+
+// ---- Overloading ostream operator ---- //
 void	printLine(int line)
 {
 	for (int i = 0; i < line; i++)
@@ -88,7 +110,7 @@ void	printLine(int line)
 
 std::ostream&	operator<<(std::ostream &os, const AForm& ref)
 {
-	std::string	str = "| Grade required to execute : ";
+	std::string	str = "  Grade required to execute : ";
 	int	line = str.length() + 3; 
 
 	printLine(line);

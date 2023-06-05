@@ -43,6 +43,7 @@ class AForm
 		int				getGradeExecute() const;
 		void			beSigned(const Bureaucrat &ref);
 		virtual void	execute(Bureaucrat const &executor) const = 0;
+		void			executable(Bureaucrat const &executor) const;
 		
 		// Inner Classes define Exception 
 		class GradeTooHighException : public std::exception
@@ -51,6 +52,16 @@ class AForm
 				const char	*what() const throw();
 		};
 		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char	*what() const throw();
+		};
+		class DoesNotSignedException : public std::exception
+		{
+			public:
+				const char	*what() const throw();
+		};
+		class FileOpenErrorException : public std::exception
 		{
 			public:
 				const char	*what() const throw();

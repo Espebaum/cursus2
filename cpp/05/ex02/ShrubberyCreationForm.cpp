@@ -1,5 +1,4 @@
 #include "ShrubberyCreationForm.hpp"
-#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() \
@@ -27,10 +26,14 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
+	executable(executor); // parameter is const executor, so function must be const also.
 	std::cout<<executor.getName()<<std::endl;
 	std::ofstream	ofs("<" + getName() + ">_shrubbery", std::ofstream::out | std::ofstream::trunc);
 	//std::ofstream::out -> file to write, std::ofstream::trunc -> if it exists, erase it.
-	
+	//also (out | trunc) is a default mode of ofstream.
+	//so This line opearates same without specifying the file mode.
+	if (!ofs.good())
+		throw FileOpenErrorException();
 	std::string shrubbery =
 	"               ,@@@@@@@,\n"
 	"       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
@@ -38,7 +41,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	"   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
 	"   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
 	"   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
-	"   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+	"   `&%\\ `|/%&'    |.|        \\ '|8'\n"
 	"       |o|        | |         | |\n"
 	"       |.|        | |         | |\n"
 	"    \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_";
@@ -46,5 +49,3 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	ofs<<shrubbery;
 	ofs.close();
 }
-
-ShrubberyCreationForm::~ShrubberyCreationForm() {}

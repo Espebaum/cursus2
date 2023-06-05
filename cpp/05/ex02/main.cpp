@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main()
 {
@@ -26,10 +27,11 @@ int main()
 		// 	std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 		// }
 		
-		ShrubberyCreationForm	form("Test");
-		form.beSigned(bur);
+		ShrubberyCreationForm	form("Shru");
+		RobotomyRequestForm		Robo("Ape");
+		Robo.beSigned(bur);
 
-		form.execute(bur);
+		Robo.execute(bur);
 	}
 	catch (std::exception &e)
 	{

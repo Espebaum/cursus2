@@ -1,28 +1,26 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-# include <iostream>
-# include <string>
+#include "AForm.hpp"
+#include <cstdlib> // add <stdlib.h> in c++ file, to use rand() function
+#include <ctime> // to use time function, include ctime in function
 
-#define RESET		"\033[0m"
-#define BOLDBLACK	"\033[1m\033[30m"
-#define BOLDRED		"\033[1m\033[31m"
-#define BOLDGREEN	"\033[1m\033[32m"
-#define BOLDYELLOW	"\033[1m\033[33m"
-#define BOLDBLUE	"\033[1m\033[34m"
-#define BOLDMAGENTA	"\033[1m\033[35m"
-#define BOLDCYAN	"\033[1m\033[36m"
-#define BOLDWHITE	"\033[1m\033[37m"
-
-class RobotomyRequestForm
+#define ROBO 		"RobotomyRequestForm"
+#define ROBO_SIGN	72
+#define ROBO_EXEC	45
+class RobotomyRequestForm : public AForm
 {
-    private:
-        /* data */
-    public:
-        RobotomyRequestForm(/* args */);
-        RobotomyRequestForm(const RobotomyRequestForm& ref);
-        ~RobotomyRequestForm();
-        RobotomyRequestForm& operator=(const RobotomyRequestForm& ref);
+	private:
+		RobotomyRequestForm(); //Function that only works IN member function
+	public:
+		//Functions in OCCF		
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(const RobotomyRequestForm& ref);
+		~RobotomyRequestForm() {};
+		RobotomyRequestForm& operator=(const RobotomyRequestForm& ref);
+
+		//Other Function
+		void	execute(Bureaucrat const &executor) const;
 };
 
 #endif

@@ -1,18 +1,41 @@
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() {}
-
-RobotomyRequestForm::~RobotomyRequestForm() {}
-
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref)
+RobotomyRequestForm::RobotomyRequestForm() \
+    : AForm()
 {
-    *this = ref;
+    setType(ROBO);
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &ref)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) \
+    : AForm(target, ROBO_SIGN, ROBO_EXEC)
 {
-    if (this != &ref)
-    {
-        this->type = ref.type; //YOU CAN CHANGE THIS IF YOU NEED!!!
-    }
+    setType(ROBO);
+}
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref) \
+    : AForm(ref)
+{
+    setType(ROBO);
+}
+
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &ref) 
+{
+    return *(dynamic_cast<RobotomyRequestForm*>(&(AForm::operator=(ref))));
+}
+
+void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
+{
+	executable(executor);
+
+    srand((unsigned int)time(NULL));
+    int per = rand() % 10;
+
+    std::cout<<per<<std::endl;
+    if (per <= 4)
+        std::cout<<BOLDYELLOW<<getName()<<"'s"<<BOLDCYAN \
+        <<" Robotomy Surgery has been completed successfully!!!"<<std::endl;
+    else
+        std::cout<<BOLDRED<<getName()<<"'s"<<BOLDRED \
+        <<" Robotomy Surgery has been failed..."<<std::endl;
 }
