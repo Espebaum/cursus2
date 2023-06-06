@@ -26,12 +26,12 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	executable(executor); // parameter is const executor, so function must be const also.
-	std::cout<<executor.getName()<<std::endl;
+	executable(executor); 
+	// parameter is const executor, so function must be const also.
 	std::ofstream	ofs("<" + getName() + ">_shrubbery", std::ofstream::out | std::ofstream::trunc);
-	//std::ofstream::out -> file to write, std::ofstream::trunc -> if it exists, erase it.
-	//also (out | trunc) is a default mode of ofstream.
-	//so This line opearates same without specifying the file mode.
+	// std::ofstream::out -> file to write, std::ofstream::trunc -> if it exists, erase it.
+	// also (out | trunc) is a default mode of ofstream.
+	// so This line opearates same without specifying the file mode.
 	if (!ofs.good())
 		throw FileOpenErrorException();
 	std::string shrubbery =

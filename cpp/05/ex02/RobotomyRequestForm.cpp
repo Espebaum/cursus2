@@ -30,8 +30,8 @@ void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
 
     srand((unsigned int)time(NULL));
     int per = rand() % 10;
+    std::cout<<RESET;
 
-    std::cout<<per<<std::endl;
     if (per <= 4)
         std::cout<<BOLDYELLOW<<getName()<<"'s"<<BOLDCYAN \
         <<" Robotomy Surgery has been completed successfully!!!"<<std::endl;

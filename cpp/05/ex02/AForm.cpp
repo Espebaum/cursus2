@@ -12,8 +12,6 @@ AForm::AForm(std::string name, int signGrade, int executeGrade) \
 		throw AForm::GradeTooHighException();
 	else if (signGrade > 150 || executeGrade > 150)
 		throw AForm::GradeTooLowException();
-
-	std::cout << "Ok, There's an empty sheet" << std::endl;
 }
 
 AForm::AForm(const AForm &ref) \

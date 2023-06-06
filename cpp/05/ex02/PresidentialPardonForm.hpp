@@ -1,28 +1,25 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-# include <iostream>
-# include <string>
+#include "AForm.hpp"
 
-#define RESET		"\033[0m"
-#define BOLDBLACK	"\033[1m\033[30m"
-#define BOLDRED		"\033[1m\033[31m"
-#define BOLDGREEN	"\033[1m\033[32m"
-#define BOLDYELLOW	"\033[1m\033[33m"
-#define BOLDBLUE	"\033[1m\033[34m"
-#define BOLDMAGENTA	"\033[1m\033[35m"
-#define BOLDCYAN	"\033[1m\033[36m"
-#define BOLDWHITE	"\033[1m\033[37m"
+#define	PPF			"PresidentialPardonForm"
+#define PPF_SIGN	25
+#define PPF_EXEC	5
 
-class PresidentialPardonForm
+class PresidentialPardonForm : public AForm
 {
-    private:
-        /* data */
-    public:
-        PresidentialPardonForm(/* args */);
-        PresidentialPardonForm(const PresidentialPardonForm& ref);
-        ~PresidentialPardonForm();
-        PresidentialPardonForm& operator=(const PresidentialPardonForm& ref);
+	private:
+		PresidentialPardonForm(); // Function that only works IN member function
+	public:
+		// Functions in OCCF
+		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(const PresidentialPardonForm& ref);
+		~PresidentialPardonForm() {};
+		PresidentialPardonForm& operator=(const PresidentialPardonForm& ref);
+
+		// Other Function
+		void	execute(Bureaucrat const &executor) const;
 };
 
 #endif
