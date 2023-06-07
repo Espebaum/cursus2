@@ -39,7 +39,7 @@ AForm*	Intern::makeForm(std::string formName, std::string formTarget)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << BOLDRED << e.what() << RESET << std::endl;
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 	
 	return NULL;

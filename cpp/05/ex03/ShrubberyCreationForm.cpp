@@ -31,11 +31,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	try
 	{
 		executable(executor); 
-		// parameter is const executor, so function must be const also.
 		std::ofstream	ofs("<" + getName() + ">_shrubbery", std::ofstream::out | std::ofstream::trunc);
-		// std::ofstream::out -> file to write, std::ofstream::trunc -> if it exists, erase it.
-		// also (out | trunc) is a default mode of ofstream.
-		// so This line opearates same without specifying the file mode.
 		if (!ofs.good())
 			throw FileOpenErrorException();
 		std::string shrubbery =
@@ -52,9 +48,12 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		
 		ofs<<shrubbery;
 		ofs.close();
+		std::cout<<BOLDYELLOW<<"--------------------------------------------------------"<<RESET<<std::endl;
+		std::cout<<BOLDCYAN<<executor.getName()<<RESET<<" executed "<<BOLDGREEN<<this->getType()<<RESET<<std::endl;
+		std::cout<<BOLDYELLOW<<"--------------------------------------------------------"<<RESET<<std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout<<e.what()<<std::endl;
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }

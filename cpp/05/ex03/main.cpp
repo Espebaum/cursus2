@@ -19,9 +19,9 @@ int main()
 	std::cout<<"        The Approvers enter"<<std::endl;
 	std::cout<<"-----------------------------------"<<RESET<<std::endl;
 	
-	Bureaucrat	approver1("Alex", 146);
-	Bureaucrat	approver2("Bendy", 17);
-	Bureaucrat	approver3("James", 120);
+	Bureaucrat	approver1("Alex", 3);
+	Bureaucrat	approver2("Bendy", 3);
+	Bureaucrat	approver3("James", 3);
 
 	std::cout<<approver1<<std::endl<<approver2<<std::endl<<approver3<<std::endl;
 
@@ -29,9 +29,9 @@ int main()
 	std::cout<<"        The Executors enter"<<std::endl;
 	std::cout<<"-----------------------------------"<<RESET<<std::endl;
 
-	Bureaucrat	executor1("Anne", 1000);
-	Bureaucrat	executor2("Brigit", 150);
-	Bureaucrat	executor3("Jane", 2);
+	Bureaucrat	executor1("Anne", 150);
+	Bureaucrat	executor2("Brigit", 3);
+	Bureaucrat	executor3("Jane", 3);
 
 	std::cout<<executor1<<std::endl<<executor2<<std::endl<<executor3<<std::endl<<std::endl;
 
@@ -52,7 +52,7 @@ int main()
 
 	std::cout<<std::endl;
 	std::cout<<BOLDGREEN<<"-----------------------------------"<<std::endl;
-	std::cout<<RESET<<"    Approvers are signing forms"<<std::endl;
+	std::cout<<BOLDYELLOW<<"    Approvers are signing forms"<<std::endl;
 	std::cout<<BOLDGREEN<<"-----------------------------------"<<RESET<<std::endl;
 
 	rrf1->beSigned(approver1);
@@ -67,12 +67,12 @@ int main()
 	std::cout<<*rrf1<<std::endl<<std::endl<<*rrf2<<std::endl<<std::endl<<*rrf3<<std::endl<<std::endl;
 	
 	std::cout<<BOLDRED<<"-----------------------------------"<<std::endl;
-	std::cout<<RESET<<"   Executors are executing forms"<<std::endl;
+	std::cout<<BOLDMAGENTA<<"   Executors are executing forms"<<std::endl;
 	std::cout<<BOLDRED<<"-----------------------------------"<<RESET<<std::endl;
 
-	rrf1->execute(executor1);
-	rrf2->execute(executor2);
-	rrf3->execute(executor3);
+	executor1.executeForm(*rrf1);
+	executor2.executeForm(*rrf2);
+	executor3.executeForm(*rrf3);
 
 	delete	rrf1;
 	delete	rrf2;

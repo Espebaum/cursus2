@@ -34,9 +34,12 @@ void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 		std::cout << RESET << "<" << BOLDCYAN << getName() \
 		<< RESET << "> has been pardoned by " << BOLDRED << "Zafod Beeblebrox" \
 		<< std::endl;
+		std::cout<<BOLDYELLOW<<"--------------------------------------------------------"<<RESET<<std::endl;
+		std::cout<<BOLDCYAN<<executor.getName()<<RESET<<" executed "<<BOLDGREEN<<this->getType()<<RESET<<std::endl;
+		std::cout<<BOLDYELLOW<<"--------------------------------------------------------"<<RESET<<std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout<<e.what()<<std::endl;
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }

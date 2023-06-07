@@ -62,6 +62,8 @@ void	AForm::beSigned(const Bureaucrat &ref)
 {
 	int	grade = ref.getGrade();
 
+	if (grade < 1 || grade > 150)
+		return;
 	try
 	{
 		if (grade < 0)
@@ -73,7 +75,7 @@ void	AForm::beSigned(const Bureaucrat &ref)
 	}
 	catch (std::exception &e)
 	{
-		std::cout<<e.what()<<std::endl;
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }
 
@@ -90,7 +92,7 @@ const char *AForm::GradeTooLowException::what(void) const throw()
 
 const char *AForm::ExecutorLowToExecute::what(void) const throw()
 {
-	return ("Executor's grade is too low to execute the Form");
+	return ("Executor's grade was too low to execute the Form");
 }
 
 const char *AForm::DoesNotSignedException::what(void) const throw()

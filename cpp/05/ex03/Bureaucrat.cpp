@@ -15,8 +15,8 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 	}
 	catch (std::exception &e)
 	{
-		this->grade = -1;
-		std::cout<<e.what()<<std::endl;
+		// this->grade = -1;
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }
 
@@ -79,6 +79,11 @@ void	Bureaucrat::signForm(const AForm &ref)
 		std::cout << BOLDBLUE << getName() << BOLDRED << " couldn't signed " \
 		<< BOLDGREEN << ref.getType() << BOLDMAGENTA << \
 		" because Bureaucrat's grade was not that high to sign the Form..." << RESET << std::endl;
+}
+
+void	Bureaucrat::executeForm(AForm const &ref)
+{
+	ref.execute(*this);
 }
 
 std::ostream&	operator<<(std::ostream &os, const Bureaucrat& ref)
