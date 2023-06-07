@@ -1,0 +1,42 @@
+#include "PresidentialPardonForm.hpp"
+#include "Bureaucrat.hpp"
+
+PresidentialPardonForm::PresidentialPardonForm() \
+	: AForm()
+{
+	setType(PPF);
+}
+
+PresidentialPardonForm::PresidentialPardonForm(std::string target) \
+	: AForm(target, PPF_SIGN, PPF_EXEC)
+{
+	setType(PPF);
+}
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ref) \
+	: AForm(ref)
+{
+	setType(PPF);
+}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &ref)
+{
+	return *(dynamic_cast<PresidentialPardonForm*>(&(AForm::operator=(ref))));
+}
+
+void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() < 1 || executor.getGrade() > 150)
+		return ;
+	try 
+	{
+		executable(executor);
+		std::cout << RESET << "<" << BOLDCYAN << getName() \
+		<< RESET << "> has been pardoned by " << BOLDRED << "Zafod Beeblebrox" \
+		<< std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout<<e.what()<<std::endl;
+	}
+}
