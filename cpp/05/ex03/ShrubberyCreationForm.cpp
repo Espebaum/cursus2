@@ -57,3 +57,5 @@ void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }
+
+ShrubberyCreationForm::~ShrubberyCreationForm() {}

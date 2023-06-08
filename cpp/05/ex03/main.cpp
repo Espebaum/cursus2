@@ -29,8 +29,8 @@ int main()
 	std::cout<<"        The Executors enter"<<std::endl;
 	std::cout<<"-----------------------------------"<<RESET<<std::endl;
 
-	Bureaucrat	executor1("Anne", 150);
-	Bureaucrat	executor2("Brigit", 3);
+	Bureaucrat	executor1("Anne", 152);
+	Bureaucrat	executor2("Brigit", 87);
 	Bureaucrat	executor3("Jane", 3);
 
 	std::cout<<executor1<<std::endl<<executor2<<std::endl<<executor3<<std::endl<<std::endl;

@@ -3,7 +3,7 @@
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150) {}
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name), grade(grade)
 {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
@@ -13,14 +13,14 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.name), grade(ref.grade) {}
+Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.getName()), grade(ref.getGrade()) {}
 
-//Cannot overload operator= properly because of constant member variable
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &ref)
 {
 	if (this != &ref)
 	{
-		this->grade = ref.grade;
+		*(const_cast<std::string*>(&this->name)) = ref.getName();
+		this->grade = ref.getGrade();
 	}
 	return (*this);
 }
@@ -68,6 +68,11 @@ void	Bureaucrat::signForm(const AForm &ref)
 		std::cout << BOLDBLUE << this->getName() << BOLDRED << " couldn't sign " \
 		<< BOLDGREEN << ref.getName() << BOLDMAGENTA << \
 		" because its grade was not that high to sign the Form..." << RESET << std::endl;
+}
+
+void	Bureaucrat::executeForm(AForm const &ref)
+{
+	ref.execute(*this);
 }
 
 std::ostream&	operator<<(std::ostream &os, const Bureaucrat& ref)

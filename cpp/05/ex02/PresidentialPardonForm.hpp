@@ -15,7 +15,7 @@ class PresidentialPardonForm : public AForm
 		// Functions in OCCF
 		PresidentialPardonForm(std::string target);
 		PresidentialPardonForm(const PresidentialPardonForm& ref);
-		~PresidentialPardonForm() {};
+		~PresidentialPardonForm();
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& ref);
 
 		// Other Function

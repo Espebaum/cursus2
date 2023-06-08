@@ -33,7 +33,7 @@ class AForm
 		AForm(std::string name, int signGrade, int executeGrade);
 		AForm& operator=(const AForm& ref);
 		AForm(const AForm& ref);
-		virtual ~AForm() {};
+		virtual ~AForm();
 
 		// Other Functions
 		void			setType(const std::string type);

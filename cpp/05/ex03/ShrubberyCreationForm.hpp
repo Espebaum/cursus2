@@ -15,7 +15,7 @@ class ShrubberyCreationForm : public AForm
 		//Functions in OCCF
 		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& ref);
-		~ShrubberyCreationForm() {};
+		~ShrubberyCreationForm();
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& ref);
 
 		//Other Function

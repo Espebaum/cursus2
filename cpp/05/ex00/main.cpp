@@ -6,7 +6,9 @@ int main()
 	{
 		try
 		{
+			Bureaucrat	bur2("None", 12234);
 			Bureaucrat	bur1("John", 0);
+			std::cout<<"This will not be printed"<<std::endl;
 		}
 		catch(const std::exception& e)
 		{

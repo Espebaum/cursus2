@@ -51,3 +51,5 @@ void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
 		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }
+
+RobotomyRequestForm::~RobotomyRequestForm() {}

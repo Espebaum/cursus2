@@ -24,13 +24,14 @@ class Bureaucrat
 		int	grade;
 	public:
 		Bureaucrat();
-		Bureaucrat(std::string name, int grade);
+		Bureaucrat(const std::string name, int grade);
 		~Bureaucrat();
 		std::string	getName() const;
 		int	getGrade() const;
 		void incrementGrade();
 		void decrementGrade();
 		void signForm(const AForm &ref);
+		void executeForm(AForm const &ref);
 		Bureaucrat& operator<<(const Bureaucrat &ref);
 		class GradeTooHighException : public std::exception
 		{

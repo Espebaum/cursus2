@@ -13,13 +13,18 @@ Form::Form(std::string name, int grade) : name(name), indicator(0), gradeSigned(
 		throw Form::GradeTooLowException();
 }
 
-Form::Form(const Form &ref) : name(ref.name), indicator(ref.indicator), gradeSigned(ref.gradeSigned), gradeExecute(ref.gradeExecute) {}
+Form::Form(const Form &ref) \
+	: name(ref.getName()), indicator(ref.getIndicator()), \
+		gradeSigned(ref.getGradeSigned()), gradeExecute(ref.getGradeExecute()) {}
 
 //Cannot overload operator= properly because of constant member variables
 Form& Form::operator=(const Form &ref)
 {
 	if (this != &ref)
 	{
+		*(const_cast<std::string*>(&this->name)) = ref.getName();
+		*(const_cast<int*>(&this->gradeSigned)) = ref.getGradeSigned();
+		*(const_cast<int*>(&this->gradeExecute)) = ref.getGradeExecute();
 		this->indicator = ref.indicator;
 	}
 	return (*this);

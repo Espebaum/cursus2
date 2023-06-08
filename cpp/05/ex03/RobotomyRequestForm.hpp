@@ -16,7 +16,7 @@ class RobotomyRequestForm : public AForm
 		//Functions in OCCF		
 		RobotomyRequestForm(std::string target);
 		RobotomyRequestForm(const RobotomyRequestForm& ref);
-		~RobotomyRequestForm() {};
+		~RobotomyRequestForm();
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& ref);
 
 		//Other Function

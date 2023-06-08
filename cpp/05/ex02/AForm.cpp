@@ -15,13 +15,16 @@ AForm::AForm(std::string name, int signGrade, int executeGrade) \
 }
 
 AForm::AForm(const AForm &ref) \
-	: name(ref.name), indicator(ref.indicator), gradeSigned(ref.gradeSigned), gradeExecute(ref.gradeExecute) {}
+	: name(ref.getName()), indicator(ref.getIndicator()), \
+		gradeSigned(ref.getGradeSigned()), gradeExecute(ref.getGradeExecute()) {}
 
-//Cannot overload operator= properly because of constant member variables
 AForm& AForm::operator=(const AForm &ref)
 {
 	if (this != &ref)
 	{
+		*(const_cast<std::string*>(&this->name)) = ref.getName();
+		*(const_cast<int*>(&this->gradeSigned)) = ref.getGradeSigned();
+		*(const_cast<int*>(&this->gradeExecute)) = ref.getGradeExecute();
 		this->indicator = ref.indicator;
 	}
 	return (*this);
@@ -30,7 +33,12 @@ AForm& AForm::operator=(const AForm &ref)
 // ---- Other Functions ---- //
 void	AForm::setType(const std::string type_)
 {
-	*(const_cast<std::string*>(&(this->type))) = type_; 
+	*(const_cast<std::string*>(&this->type)) = type_; 
+}
+
+std::string AForm::getType() const
+{
+	return (this->type);
 }
 
 std::string AForm::getName() const
@@ -62,7 +70,7 @@ void	AForm::beSigned(const Bureaucrat &ref)
 	else if (grade > 150)
 		throw AForm::GradeTooLowException();
 	
-	if ((grade <= this->getGradeSigned()) && (grade <= this->getGradeExecute()))
+	if ((grade <= this->getGradeSigned()))
 		this->indicator = 1;
 }
 
@@ -75,6 +83,11 @@ const char *AForm::GradeTooHighException::what(void) const throw()
 const char *AForm::GradeTooLowException::what(void) const throw()
 {
 	return ("Form's grade is too low to be signed");
+}
+
+const char *AForm::ExecutorLowToExecute::what(void) const throw()
+{
+	return ("Executor's grade was too low to execute the Form");
 }
 
 const char *AForm::DoesNotSignedException::what(void) const throw()
@@ -94,7 +107,7 @@ void	AForm::executable(const Bureaucrat &executor) const
 	if (this->indicator == 0)
 		throw AForm::DoesNotSignedException();
 	if (B_grade > this->gradeExecute)
-		throw AForm::GradeTooHighException();
+		throw AForm::ExecutorLowToExecute();
 }
 
 // ---- Overloading ostream operator ---- //
@@ -121,3 +134,5 @@ std::ostream&	operator<<(std::ostream &os, const AForm& ref)
 	std::cout<<RESET;
 	return (os);
 }
+
+AForm::~AForm() {}

@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150) {}
 
-Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name), grade(grade)
 {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
@@ -12,18 +12,18 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &ref) {*this = ref;}
+Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.getName()), grade(ref.getGrade()) {}
 
-//Cannot overload operator= properly because of constant member variable
+//Have to use const cast to assign properly
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &ref)
 {
 	if (this != &ref)
 	{
-		this->grade = ref.grade;
+		*(const_cast<std::string*>(&this->name)) = ref.getName();
+		this->grade = ref.getGrade();
 	}
 	return (*this);
 }
-
 
 std::string	Bureaucrat::getName() const
 {

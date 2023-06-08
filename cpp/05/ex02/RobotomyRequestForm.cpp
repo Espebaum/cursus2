@@ -36,6 +36,12 @@ void    RobotomyRequestForm::execute(Bureaucrat const &executor) const
         std::cout<<BOLDYELLOW<<getName()<<"'s"<<BOLDCYAN \
         <<" Robotomy Surgery has been completed successfully!!!"<<std::endl;
     else
-        std::cout<<BOLDRED<<getName()<<"'s"<<BOLDRED \
+        std::cout<<BOLDYELLOW<<getName()<<"'s"<<BOLDRED \
         <<" Robotomy Surgery has been failed..."<<std::endl;
+    
+    std::cout<<BOLDYELLOW<<"--------------------------------------------------------"<<RESET<<std::endl;
+	std::cout<<BOLDCYAN<<executor.getName()<<RESET<<" executed "<<BOLDGREEN<<this->getType()<<RESET<<std::endl;
+    std::cout<<BOLDYELLOW<<"--------------------------------------------------------"<<RESET<<std::endl;
 }
+
+RobotomyRequestForm::~RobotomyRequestForm() {}

@@ -15,13 +15,16 @@ AForm::AForm(std::string name, int signGrade, int executeGrade) \
 }
 
 AForm::AForm(const AForm &ref) \
-	: name(ref.name), indicator(ref.indicator), gradeSigned(ref.gradeSigned), gradeExecute(ref.gradeExecute) {}
+	: name(ref.getName()), indicator(ref.getIndicator()), \
+		gradeSigned(ref.getGradeSigned()), gradeExecute(ref.getGradeExecute()) {}
 
-//Cannot overload operator= properly because of constant member variables
 AForm& AForm::operator=(const AForm &ref)
 {
 	if (this != &ref)
 	{
+		*(const_cast<std::string*>(&this->name)) = ref.getName();
+		*(const_cast<int*>(&this->gradeSigned)) = ref.getGradeSigned();
+		*(const_cast<int*>(&this->gradeExecute)) = ref.getGradeExecute();
 		this->indicator = ref.indicator;
 	}
 	return (*this);
@@ -139,3 +142,5 @@ std::ostream&	operator<<(std::ostream &os, const AForm& ref)
 	std::cout<<RESET;
 	return (os);
 }
+
+AForm::~AForm() {}

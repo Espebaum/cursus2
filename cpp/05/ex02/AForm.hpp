@@ -33,10 +33,11 @@ class AForm
 		AForm(std::string name, int signGrade, int executeGrade);
 		AForm& operator=(const AForm& ref);
 		AForm(const AForm& ref);
-		virtual ~AForm() {};
+		virtual ~AForm();
 
 		// Other Functions
 		void			setType(const std::string type);
+		std::string		getType() const;
 		std::string		getName() const;
 		bool			getIndicator() const;
 		int				getGradeSigned() const;
@@ -52,6 +53,11 @@ class AForm
 				const char	*what() const throw();
 		};
 		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char	*what() const throw();
+		};
+		class ExecutorLowToExecute : public std::exception
 		{
 			public:
 				const char	*what() const throw();

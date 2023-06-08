@@ -8,28 +8,36 @@ int main()
 		try
 		{
 			Bureaucrat	test("Queen Elizabeth", 0);
+			Bureaucrat	none("None", 155);
 		}
 		catch (std::exception &e)
 		{
 			std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 		}
 
-		Bureaucrat	bur("James", 2);
+		Bureaucrat	James("James", 2);
 		
 		try
 		{
 			Form	testForm("Building the Pentagon", 0);
+			Form	none("NonExist", 155);
 		}
 		catch(const std::exception& e)
 		{
 			std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 		}
 		
-		Form		form("Building School", 10);
+		Form	form1("Hiring principle", 1);
+		Form	form2("Building School", 10);
+		
+		form1.beSigned(James);
+		form2.beSigned(James);
 
-		form1.beSigned(bur);
-		std::cout<<form<<std::endl;
-		bur.signForm(form);
+		std::cout<<form1<<std::endl;
+		std::cout<<form2<<std::endl;
+
+		James.signForm(form1);
+		James.signForm(form2);
 	}
 	catch (std::exception &e)
 	{

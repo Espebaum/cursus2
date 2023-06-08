@@ -15,21 +15,35 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 	}
 	catch (std::exception &e)
 	{
-		// this->grade = -1;
 		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.name), grade(ref.grade) {}
+Bureaucrat::Bureaucrat(const Bureaucrat &ref) : name(ref.getName()), grade(ref.getGrade())
+{
+	try
+	{
+		if (getGrade() < 1)
+			throw Bureaucrat::GradeTooHighException();
+		else if (getGrade() > 150)
+			throw Bureaucrat::GradeTooLowException();
+	}
+	catch (std::exception &e)
+	{
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
+	}
+}
 
-//Cannot overload operator= properly because of constant member variable
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &ref)
 {
+	// const std::string	*ptr = &this->name;
+	// *(const_cast<std::string*>(ptr)) = ref.getName();
 	if (this != &ref)
 	{
-		this->grade = ref.grade;
+		*(const_cast<std::string*>(&this->name)) = ref.getName();
+		this->grade = ref.getGrade();
 	}
 	return (*this);
 }

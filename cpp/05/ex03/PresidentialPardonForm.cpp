@@ -43,3 +43,5 @@ void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
 	}
 }
+
+PresidentialPardonForm::~PresidentialPardonForm() {}
