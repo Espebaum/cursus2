@@ -69,7 +69,7 @@ void	AForm::beSigned(const Bureaucrat &ref)
 		return;
 	try
 	{
-		if (grade < 0)
+		if (grade < 1)
 			throw Bureaucrat::GradeTooHighException();
 		else if (grade > 150)
 			throw Bureaucrat::GradeTooLowException();

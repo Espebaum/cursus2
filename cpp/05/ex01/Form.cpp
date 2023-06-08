@@ -64,7 +64,7 @@ void	Form::beSigned(const Bureaucrat &ref)
 {
 	int	grade = ref.getGrade();
 
-	if (grade < 0)
+	if (grade < 1)
 		throw Form::GradeTooHighException();
 	else if (grade > 150)
 		throw Form::GradeTooLowException();
