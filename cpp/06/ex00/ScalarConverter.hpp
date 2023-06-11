@@ -3,6 +3,9 @@
 
 # include <iostream>
 # include <string>
+# include <cmath>
+# include <cstdlib>
+# include <stdexcept>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -14,16 +17,20 @@
 #define BOLDCYAN	"\033[1m\033[36m"
 #define BOLDWHITE	"\033[1m\033[37m"
 
+#define ND "Non displayable"
+#define NP "impossible"
+
 class ScalarConverter
 {
 	private:
 		static bool			err;
 		const std::string	input;
 		const double		value;
+		ScalarConverter();
 
 	public:
 		//OCCF
-		ScalarConverter();
+  		explicit ScalarConverter(const std::string& input);
 		ScalarConverter(const ScalarConverter& ref);
 		~ScalarConverter();
 		ScalarConverter& operator=(const ScalarConverter& ref);
@@ -34,14 +41,12 @@ class ScalarConverter
 		float	toFloat() const;
 		double	toDouble() const;
 
-  		explicit ScalarConverter(const std::string& input);
-
 		// getter Functions
 		bool	getErr() const;
 		double	getValue() const;
 		std::string	getInput() const;
 };
 
-bool ScalarConverter::err = 0;
+std::ostream&	operator<<(std::ostream& os, const ScalarConverter &c);
 
 #endif
