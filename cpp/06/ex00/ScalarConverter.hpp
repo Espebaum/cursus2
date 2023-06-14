@@ -6,6 +6,7 @@
 # include <cmath>
 # include <cstdlib>
 # include <stdexcept>
+# include <iomanip>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -45,6 +46,9 @@ class ScalarConverter
 		bool	getErr() const;
 		double	getValue() const;
 		std::string	getInput() const;
+
+		//Convert
+		void	convert();
 };
 
 std::ostream&	operator<<(std::ostream& os, const ScalarConverter &c);

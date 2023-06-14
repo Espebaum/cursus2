@@ -2,17 +2,25 @@
 #include "B.hpp"
 #include "C.hpp"
 
-#include <typeinfo>
+// void    leakcheck()
+// {
+//     system("leaks real");
+// }
 
 int main(void)
 {
-    Base    *bp = generate();    
-    std::cout<<bp<<std::endl;
+	// atexit(leakcheck);
+	
+	// Base	N_bp;    
+	Base    *bp = generate();
+	
+	identify(bp);
+	identify(*bp);
 
-    const std::type_info& type = typeid(bp);
-    std::cout << "Type : " << type.name() << std::endl;
+	// identify(&N_bp);
+	// identify(N_bp);
 
-    delete bp;
+	delete bp;
 
-    return 0;
+	return 0;
 }

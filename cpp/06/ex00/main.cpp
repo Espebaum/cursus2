@@ -7,7 +7,8 @@ int	main(int argc, char **argv)
 		std::cout<<BOLDCYAN<< "Correct Input "<< \
 		BOLDYELLOW<<" : ./Convert \"string\""<<std::endl;
 	} else {
-		std::cout<<ScalarConverter(argv[1])<<std::endl;
+		ScalarConverter		s(argv[1]);
+		s.convert();
 	}
 	return 0;
 }

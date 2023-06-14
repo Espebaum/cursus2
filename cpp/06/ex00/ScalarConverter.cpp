@@ -31,8 +31,8 @@ ScalarConverter::ScalarConverter(const std::string& _input) \
 		if (value == 0.0 && (input[0] != '-' && input[0] != '+' \
 		&& !std::isdigit(input[0])))
 			throw::std::bad_alloc();
-		// if (*ptr && std::strcmp(ptr, "f"))
-		// 	throw std::bad_alloc();
+		if (*ptr && (std::strcmp(ptr, "f")))
+			throw std::bad_alloc();
 	}
 	catch (std::exception &e) 
 	{
@@ -78,9 +78,11 @@ std::string	ScalarConverter::getInput() const
 
 void	printToChar(std::ostream &os, const ScalarConverter &c)
 {
-	os << "char: ";
+	os << BOLDYELLOW << "char: " << RESET;
 	if (std::isnan(c.getValue()) || std::isinf(c.getValue())) {
 		os << NP << std::endl;
+	} else if (c.getValue() < 0 || c.getValue() > 255) {
+		os<<ND<<std::endl;
 	} else if (std::isprint(c.toChar())) {
 		os <<"'"<<c.toChar()<<"'"<<std::endl;
 	} else {
@@ -88,14 +90,60 @@ void	printToChar(std::ostream &os, const ScalarConverter &c)
 	}
 }
 
+void	printToInt(std::ostream &os, const ScalarConverter &c)
+{
+	os << BOLDGREEN << "int: " << RESET; 
+	if (std::isnan(c.getValue()) || std::isinf(c.getValue())) {
+		os << NP << std::endl;
+	} else if (c.getValue() > std::numeric_limits<int>::max() \
+		|| c.getValue() < std::numeric_limits<int>::min()) {
+		std::cout<<"impossible"<<std::endl;
+	} else {
+		os << c.toInt() << std::endl;
+	}
+}
+
+void	printToPoint(std::ostream &os, const ScalarConverter& c)
+{
+	if (std::isnan(c.getValue()) || std::isinf(c.getValue()))
+	{
+		os << BOLDBLUE << "float: " << RESET << c.toFloat() << "f"<<std::endl;
+		os << BOLDCYAN << "double: " << RESET << c.toDouble();
+		return;
+	}
+	if (c.toFloat() == static_cast<int64_t>(c.toFloat()))
+	{
+		os << BOLDBLUE << "float: " << RESET << c.toFloat() << ".0f" << std::endl;
+	}
+	else
+	{
+		os << BOLDBLUE << "float: " << RESET << std::setprecision \
+		(std::numeric_limits<float>::digits10)<<c.toFloat()<<"f"<<std::endl;
+	}
+	if (c.toDouble() == static_cast<int64_t>(c.toDouble()))
+	{
+		os << BOLDCYAN << "double: " << RESET << c.toDouble() << ".0";
+	}
+	else
+	{
+		os << BOLDCYAN << "double: " << RESET << std::setprecision \
+		(std::numeric_limits<float>::digits10)<<c.toFloat();	
+	}
+}
+
+void	ScalarConverter::convert()
+{
+	std::cout<<ScalarConverter(*this)<<std::endl;
+}
+
 std::ostream&	operator<<(std::ostream &os, const ScalarConverter &c)
 {
 	if (c.getErr()) {
-		os<<"Converting Failed (Bad Alloc)"<<std::endl;
+		os<<BOLDRED<<"Converting Failed (Bad Alloc)";
 		return os;
 	}
 	printToChar(os, c);
-	// printToInt(os, c);
-	// printToReal(os, c);
+	printToInt(os, c);
+	printToPoint(os, c);
 	return os;
 }

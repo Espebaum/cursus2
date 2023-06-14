@@ -3,6 +3,8 @@
 
 # include <iostream>
 # include <string>
+# include <exception>
+# include <iomanip>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -21,5 +23,7 @@ class Base
 };
 
 Base*   generate();
+void    identify(Base* p);
+void    identify(Base& p);
 
 #endif
