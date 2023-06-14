@@ -42,6 +42,12 @@ class ScalarConverter
 		float	toFloat() const;
 		double	toDouble() const;
 
+		// Converting Functions
+		void	ConvertToChar();
+		void	ConvertToInt();
+		void	ConvertToFloat();
+		void	ConvertToDouble();
+
 		// getter Functions
 		bool	getErr() const;
 		double	getValue() const;
@@ -51,6 +57,6 @@ class ScalarConverter
 		void	convert();
 };
 
-std::ostream&	operator<<(std::ostream& os, const ScalarConverter &c);
+// std::ostream&	operator<<(std::ostream& os, const ScalarConverter &c);
 
 #endif
