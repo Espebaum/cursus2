@@ -39,27 +39,6 @@ ScalarConverter::ScalarConverter(const std::string& _input) \
 	}
 }
 
-// Converting Functions
-char	ScalarConverter::toChar() const
-{
-	return static_cast<char>(value);
-}
-
-double	ScalarConverter::toDouble() const
-{
-	return static_cast<double>(value);
-}
-
-float	ScalarConverter::toFloat() const
-{
-	return static_cast<float>(value);
-}
-
-int	ScalarConverter::toInt() const
-{
-	return static_cast<int>(value);
-}
-
 bool ScalarConverter::getErr() const
 {
 	return err;
@@ -77,6 +56,7 @@ std::string	ScalarConverter::getInput() const
 
 void	ScalarConverter::ConvertToChar()
 {
+	char val = static_cast<char>(getValue());
 	std::cout << BOLDYELLOW << "char : " << RESET;
 
 	if (std::isnan(getValue()) || std::isinf(getValue()))
@@ -89,27 +69,14 @@ void	ScalarConverter::ConvertToChar()
 		std::cout << "Non displayable" << std::endl;
 	}
 
-	else if (std::isprint(static_cast<char>(getValue())))
+	else if (std::isprint(val))
 	{
-		std::cout << "'" << static_cast<char>(getValue()) << "'" << std::endl;
+		std::cout << "'" << val << "'" << std::endl;
 	}
 
 	else
 	{
 		std::cout<< "Non displayble" << std::endl;
-	}
-}
-
-void	printToInt(std::ostream &os, const ScalarConverter &c)
-{
-	os << BOLDGREEN << "int: " << RESET; 
-	if (std::isnan(c.getValue()) || std::isinf(c.getValue())) {
-		os << NP << std::endl;
-	} else if (c.getValue() > std::numeric_limits<int>::max() \
-		|| c.getValue() < std::numeric_limits<int>::min()) {
-		std::cout<<"impossible"<<std::endl;
-	} else {
-		os << c.toInt() << std::endl;
 	}
 }
 
@@ -119,46 +86,51 @@ void	ScalarConverter::ConvertToInt()
 	std::cout << BOLDGREEN << "int : " << RESET;
 
 	if (std::isnan(getValue()) || std::isinf(getValue()))
+	{ 
+		std::cout << "impossible" << std::endl;
+	}
+
+	else if (static_cast<long>(getValue()) > INT_MAX \
+				|| static_cast<long>(getValue()) < INT_MIN)
 	{
 		std::cout << "impossible" << std::endl;
 	}
-	else if (val > std::numeric_limits<int>::max() \
-				|| val < std::numeric_limits<int>::min())
-	{
-		std::cout << "impossible" << std::endl;
-	}
+
 	else
 	{
-		std::cout << static_cast<int>(getValue()) << std::endl;
+		std::cout << val << std::endl;
 	}
 }
-// 이거 만들고 ConvertToPoint만들고 정리, 복습 후 평가
 
-void	printToPoint(std::ostream &os, const ScalarConverter& c)
+void	ScalarConverter::ConvertToPoint()
 {
-	if (std::isnan(c.getValue()) || std::isinf(c.getValue()))
+	float	fval = static_cast<float>(getValue());
+	double	dval = static_cast<double>(getValue());
+
+	if (std::isnan(getValue()) || std::isinf(getValue()))
 	{
-		os << BOLDBLUE << "float: " << RESET << c.toFloat() << "f"<<std::endl;
-		os << BOLDCYAN << "double: " << RESET << c.toDouble();
+		std::cout << BOLDBLUE << "float : " << RESET << std::showpos << fval << "f" << std::endl;
+		std::cout << BOLDCYAN << "double : " << RESET << std::showpos << dval << std::endl;
 		return;
 	}
-	if (c.toFloat() == static_cast<int64_t>(c.toFloat()))
+
+	if (fval == static_cast<int64_t>(fval))
 	{
-		os << BOLDBLUE << "float: " << RESET << c.toFloat() << ".0f" << std::endl;
+		std::cout << BOLDBLUE << "float : " << RESET << fval << ".0f" << std::endl;
+	}
+
+	else
+	{
+		std::cout << BOLDBLUE << "float : " << RESET << std::setprecision(6) << fval << "f" << std::endl;
+	}
+
+	if (dval == static_cast<int64_t>(dval))
+	{
+		std::cout << BOLDCYAN << "double : " << RESET << dval << ".0" << std::endl;
 	}
 	else
 	{
-		os << BOLDBLUE << "float: " << RESET << std::setprecision \
-		(std::numeric_limits<float>::digits10)<<c.toFloat()<<"f"<<std::endl;
-	}
-	if (c.toDouble() == static_cast<int64_t>(c.toDouble()))
-	{
-		os << BOLDCYAN << "double: " << RESET << c.toDouble() << ".0";
-	}
-	else
-	{
-		os << BOLDCYAN << "double: " << RESET << std::setprecision \
-		(std::numeric_limits<float>::digits10)<<c.toFloat();	
+		std::cout << BOLDCYAN << "double : " <<RESET << std::setprecision(15) << dval << std::endl;
 	}
 }
 
@@ -170,4 +142,5 @@ void	ScalarConverter::convert()
 	}
 	ConvertToChar();
 	ConvertToInt();
+	ConvertToPoint();
 }

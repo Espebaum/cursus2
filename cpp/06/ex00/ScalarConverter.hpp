@@ -37,16 +37,9 @@ class ScalarConverter
 		ScalarConverter& operator=(const ScalarConverter& ref);
 
 		// Converting Functions
-		char	toChar() const;
-		int		toInt() const;
-		float	toFloat() const;
-		double	toDouble() const;
-
-		// Converting Functions
 		void	ConvertToChar();
 		void	ConvertToInt();
-		void	ConvertToFloat();
-		void	ConvertToDouble();
+		void	ConvertToPoint();
 
 		// getter Functions
 		bool	getErr() const;
