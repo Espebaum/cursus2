@@ -29,11 +29,16 @@ ScalarConverter::ScalarConverter(const std::string& _input) \
 		char	*ptr = NULL;
 		*(const_cast<double*>(&value)) = std::strtod(input.c_str(), &ptr);
 		if (value == 0.0 && (input[0] != '-' && input[0] != '+' && !std::isdigit(input[0])))
-			throw::std::bad_alloc();
-		if (*ptr && (std::strcmp(ptr, "f")))
+		{
+			throw std::bad_alloc(); // std::isdigit returns 0, if char is not a number.
+		}
+		if (*ptr && (std::strcmp(ptr, "f"))) // if ptr and "f" are different, std::strcmp() returns 1
+		{
 			throw std::bad_alloc();
+			// ./Convert "+", "-", "+f", "-f" stuck here
+		}
 	}
-	catch (std::exception &e) 
+	catch (std::bad_alloc &e) 
 	{
 		ScalarConverter::err = true;
 	}

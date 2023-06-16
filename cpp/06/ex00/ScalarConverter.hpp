@@ -50,6 +50,4 @@ class ScalarConverter
 		void	convert();
 };
 
-// std::ostream&	operator<<(std::ostream& os, const ScalarConverter &c);
-
 #endif
