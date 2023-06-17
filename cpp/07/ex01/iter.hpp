@@ -1,5 +1,5 @@
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
 
 # include <iostream>
 # include <string>
@@ -15,30 +15,31 @@
 #define BOLDWHITE	"\033[1m\033[37m"
 
 template<typename T>
-void	swap(T &a, T &b)
+void    iter(T* array, size_t length, void (*func)(T&))
 {
-	T temp;
-	temp = a;
-	a = b;
-	b = temp;
+	for (size_t i = 0; i < length; i++)
+	{
+		func(array[i]);
+	}
 }
 
 template<typename T>
-T	min(T &a, T &b)
+void	next(T &str)
 {
-	if (a < b)
-		return a;
-	else
-		return b;
+	str++;
+}
+
+void	next(std::string& str) 
+{
+    for (size_t i = 0; i < str.length(); i++) {
+        str[i]++;
+    }
 }
 
 template<typename T>
-T	max(T &a, T &b)
+void	print(T &str)
 {
-	if (a > b)
-		return a;
-	else
-		return b; 
+	std::cout<<str<<' ';
 }
 
 #endif
