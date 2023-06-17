@@ -29,6 +29,7 @@ void	next(T &str)
 	str++;
 }
 
+template<> // template specialization
 void	next(std::string& str) 
 {
     for (size_t i = 0; i < str.length(); i++) {
