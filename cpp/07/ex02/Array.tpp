@@ -65,7 +65,7 @@ Array<T>::~Array()
 }
 
 template<typename T>
-T& Array<T>::operator[](size_t i) 
+T& Array<T>::operator[](size_t i) //const인거 하나 만들기
 {
 	if (i >= len) 
 	{

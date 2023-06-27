@@ -42,7 +42,7 @@ class ScalarConverter
 		void	ConvertToPoint();
 
 		// getter Functions
-		bool	getErr() const;
+		static bool	getErr();
 		double	getValue() const;
 		std::string	getInput() const;
 

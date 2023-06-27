@@ -15,7 +15,7 @@
 #define BOLDWHITE	"\033[1m\033[37m"
 
 template<typename T>
-void    iter(T* array, size_t length, void (*func)(T&))
+void    iter(T* array, size_t length, void (*func)(T&)) //const인거 하나 추가
 {
 	for (size_t i = 0; i < length; i++)
 	{

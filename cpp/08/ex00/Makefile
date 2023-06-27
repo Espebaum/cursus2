@@ -1,4 +1,4 @@
-NAME = 
+NAME = easyfind
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
 SRCS = main.cpp

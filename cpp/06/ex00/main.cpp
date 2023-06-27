@@ -6,7 +6,7 @@ int	main(int argc, char **argv)
 		std::cout<<BOLDRED<<"Invalid input!"<<std::endl;
 	} else {
 		ScalarConverter		s(argv[1]);
-		s.convert();
+		// ScalarConverter::convert(argv[1]);
 	}
 	return 0;
 }

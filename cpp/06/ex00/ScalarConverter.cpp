@@ -44,7 +44,7 @@ ScalarConverter::ScalarConverter(const std::string& _input) \
 	}
 }
 
-bool ScalarConverter::getErr() const
+bool ScalarConverter::getErr()
 {
 	return err;
 }

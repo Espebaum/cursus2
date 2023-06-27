@@ -1,7 +1,7 @@
-NAME = Serial
+NAME = MutantStack
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors -g
-SRCS = main.cpp Data.cpp Serializer.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp

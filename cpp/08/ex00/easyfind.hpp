@@ -3,6 +3,9 @@
 
 # include <iostream>
 # include <string>
+# include <vector>
+# include <list>
+# include <deque>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -15,6 +18,19 @@
 #define BOLDWHITE	"\033[1m\033[37m"
 
 template <typename T>
+typename T::iterator easyfind(T& container, int value)
+{
+	typename T::iterator it;
 
+	//find
+	for (it = container.begin(); it != container.end(); it++)
+		if (*it == value)
+			return it;
+
+	if (it == container.end())
+		throw std::runtime_error("Cannot find value in Container");
+	
+	return container.end();
+}
 
 #endif
