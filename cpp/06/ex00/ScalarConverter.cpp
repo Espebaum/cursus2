@@ -1,75 +1,29 @@
 #include "ScalarConverter.hpp"
 
-bool ScalarConverter::err = false;
-
-// OCCF
-ScalarConverter::ScalarConverter() \
-	: input(""), value(0.0) {}
+// OCCF in Private Area
+ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::~ScalarConverter() {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter &ref) \
-	: input(ref.input), value(ref.value) {}
+ScalarConverter::ScalarConverter(const ScalarConverter &ref) { *this = ref; }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter &ref)
 {
-	if (this != &ref)
-	{
-		*(const_cast<std::string*>(&this->input)) = ref.input;
-		*(const_cast<double*>(&this->value)) = ref.value;
-	}
+	static_cast<void>(ref);
 	return (*this);
 }
 
-ScalarConverter::ScalarConverter(const std::string& _input) \
-	: input(_input), value(0.0)
+static void	ConvertToChar(double &value)
 {
-	try 
-	{
-		char	*ptr = NULL;
-		*(const_cast<double*>(&value)) = std::strtod(input.c_str(), &ptr);
-		if (value == 0.0 && (input[0] != '-' && input[0] != '+' && !std::isdigit(input[0])))
-		{
-			throw std::bad_alloc(); // std::isdigit returns 0, if char is not a number.
-		}
-		if (*ptr && (std::strcmp(ptr, "f"))) // if ptr and "f" are different, std::strcmp() returns 1
-		{
-			throw std::bad_alloc();
-			// ./Convert "+", "-", "+f", "-f" stuck here
-		}
-	}
-	catch (std::bad_alloc &e) 
-	{
-		ScalarConverter::err = true;
-	}
-}
-
-bool ScalarConverter::getErr()
-{
-	return err;
-}
-
-double	ScalarConverter::getValue() const
-{
-	return value;
-}
-
-std::string	ScalarConverter::getInput() const
-{
-	return input;
-}
-
-void	ScalarConverter::ConvertToChar()
-{
-	char val = static_cast<char>(getValue());
+	char val = static_cast<char>(value);
 	std::cout << BOLDYELLOW << "char : " << RESET;
 
-	if (std::isnan(getValue()) || std::isinf(getValue()))
+	if (std::isnan(value) || std::isinf(value))
 	{
 		std::cout << "impossible" << std::endl;
 	}
 
-	else if (getValue() < 0 || getValue() > 255)
+	else if (value < 0 || value > 255)
 	{
 		std::cout << "Non displayable" << std::endl;
 	}
@@ -85,18 +39,18 @@ void	ScalarConverter::ConvertToChar()
 	}
 }
 
-void	ScalarConverter::ConvertToInt()
+static void	ConvertToInt(double &value)
 {
-	int val = static_cast<int>(getValue());
+	int val = static_cast<int>(value);
 	std::cout << BOLDGREEN << "int : " << RESET;
 
-	if (std::isnan(getValue()) || std::isinf(getValue()))
+	if (std::isnan(value) || std::isinf(value))
 	{ 
 		std::cout << "impossible" << std::endl;
 	}
 
-	else if (static_cast<long>(getValue()) > INT_MAX \
-				|| static_cast<long>(getValue()) < INT_MIN)
+	else if (static_cast<long>(value) > INT_MAX \
+				|| static_cast<long>(value) < INT_MIN)
 	{
 		std::cout << "impossible" << std::endl;
 	}
@@ -107,12 +61,12 @@ void	ScalarConverter::ConvertToInt()
 	}
 }
 
-void	ScalarConverter::ConvertToPoint()
+static void	ConvertToPoint(double &value)
 {
-	float	fval = static_cast<float>(getValue());
-	double	dval = static_cast<double>(getValue());
+	float	fval = static_cast<float>(value);
+	double	dval = static_cast<double>(value);
 
-	if (std::isnan(getValue()) || std::isinf(getValue()))
+	if (std::isnan(value) || std::isinf(value))
 	{
 		std::cout << BOLDBLUE << "float : " << RESET << std::showpos << fval << "f" << std::endl;
 		std::cout << BOLDCYAN << "double : " << RESET << std::showpos << dval << std::endl;
@@ -133,19 +87,44 @@ void	ScalarConverter::ConvertToPoint()
 	{
 		std::cout << BOLDCYAN << "double : " << RESET << dval << ".0" << std::endl;
 	}
+
 	else
 	{
 		std::cout << BOLDCYAN << "double : " <<RESET << std::setprecision(15) << dval << std::endl;
 	}
 }
 
-void	ScalarConverter::convert()
+static double	ConvertInputDouble(std::string &input)
 {
-	if (getErr()) {
-		std::cout<<BOLDRED<< "Converting Failed (Bad Alloc)"<< std::endl;
-		return;
+	double	value = 0.0;
+
+	char	*ptr = NULL;
+	*(const_cast<double*>(&value)) = std::strtod(input.c_str(), &ptr);
+	if (value == 0.0 && (input[0] != '-' && input[0] != '+' && !std::isdigit(input[0])))
+	{
+		throw std::bad_alloc(); // std::isdigit returns 0, if char is not a number.
 	}
-	ConvertToChar();
-	ConvertToInt();
-	ConvertToPoint();
+	if (*ptr && (std::strcmp(ptr, "f"))) // if ptr and "f" are different, std::strcmp() returns 1
+	{
+		throw std::bad_alloc();
+		// ./Convert "+", "-", "+f", "-f" stuck here
+	}
+	return value;
+}
+
+void	ScalarConverter::convert(std::string &input)
+{
+	try
+	{
+		double value = ConvertInputDouble(input);		
+		ConvertToChar(value);
+		ConvertToInt(value);
+		ConvertToPoint(value);
+	}
+	catch (std::bad_alloc &e) 
+	{
+		std::cout<<BOLDRED<<e.what()<<RESET<<std::endl;
+	}
+
+	return ;
 }

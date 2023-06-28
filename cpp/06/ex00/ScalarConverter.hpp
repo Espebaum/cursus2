@@ -24,30 +24,14 @@
 class ScalarConverter
 {
 	private:
-		static bool			err;
-		const std::string	input;
-		const double		value;
+		//OCCF
 		ScalarConverter();
+		ScalarConverter(const ScalarConverter& ref);
+		ScalarConverter& operator=(const ScalarConverter& ref);
+		~ScalarConverter();
 
 	public:
-		//OCCF
-  		explicit ScalarConverter(const std::string& input);
-		ScalarConverter(const ScalarConverter& ref);
-		~ScalarConverter();
-		ScalarConverter& operator=(const ScalarConverter& ref);
-
-		// Converting Functions
-		void	ConvertToChar();
-		void	ConvertToInt();
-		void	ConvertToPoint();
-
-		// getter Functions
-		static bool	getErr();
-		double	getValue() const;
-		std::string	getInput() const;
-
-		//Convert
-		void	convert();
+		static void	convert(std::string &input);
 };
 
 #endif
