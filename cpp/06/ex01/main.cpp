@@ -3,7 +3,6 @@
 
 int main(void)
 {
-    Serializer  s;
 	Data		d;
 	uintptr_t	ptr_t;
 
@@ -15,22 +14,14 @@ int main(void)
     std::cout<<"-----------------------------------------"<<std::endl;
 	std::cout<<BOLDCYAN<<"Pointer of Data : "<<RESET<<&d<<std::endl;
 	
-    ptr_t = s.serialize(&d);
+    ptr_t = Serializer::serialize(&d);
 
 	std::cout<<BOLDYELLOW<<"After Serialization : "<<RESET<<ptr_t<<std::endl;
     std::cout<<BOLDMAGENTA<<"Hexed Output : "<<RESET<<"0x"<<std::hex<<ptr_t<<std::endl;
 
-    Data* d_Ptr = s.deserialize(ptr_t);
-    
-    if (!ptr_t)
-        Serializer::setStatic(false);
+    Data* d_Ptr = Serializer::deserialize(ptr_t);
     
     std::cout<<BOLDBLUE<<"After Deserialization : "<<RESET<<d_Ptr<<std::endl;
-
-    if (Serializer::getStatic())
-        std::cout<<BOLDGREEN<<" => Deserialization successful!"<<RESET<<std::endl;
-    else
-        std::cout<<BOLDRED <<" => Deserialization failed!"<<RESET<<std::endl;
 
 	std::cout<<"-----------------------------------------"<<std::endl;
     std::cout<<BOLDBLUE<<"  > Information of Copied Struct Data < "<<std::endl;

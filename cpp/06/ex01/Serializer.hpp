@@ -9,19 +9,14 @@ struct Data;
 class Serializer
 {
 	private:
-		static bool		good;
-	
-	public:
 		Serializer();
 		Serializer(const Serializer& ref);
-		~Serializer();
 		Serializer& operator=(const Serializer& ref);
+		~Serializer();
 
-		static bool getStatic();
-		static void	setStatic(bool b);
-
-		Data*		deserialize(uintptr_t ptr);
-		uintptr_t	serialize(Data *ptr);
+	public:
+		static Data*		deserialize(uintptr_t ptr);
+		static uintptr_t	serialize(Data *ptr);
 };
 
 #endif
