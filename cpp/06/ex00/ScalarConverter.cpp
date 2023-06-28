@@ -98,17 +98,28 @@ static double	ConvertInputDouble(std::string &input)
 {
 	double	value = 0.0;
 
+	if (input == "+nan" || input == "-nan")
+	{
+		throw std::bad_alloc();
+	}
+
 	char	*ptr = NULL;
 	*(const_cast<double*>(&value)) = std::strtod(input.c_str(), &ptr);
+	
+	if (value == 0.0 && input == ".0")
+		return (value);
+
 	if (value == 0.0 && (input[0] != '-' && input[0] != '+' && !std::isdigit(input[0])))
 	{
 		throw std::bad_alloc(); // std::isdigit returns 0, if char is not a number.
 	}
+
 	if (*ptr && (std::strcmp(ptr, "f"))) // if ptr and "f" are different, std::strcmp() returns 1
 	{
 		throw std::bad_alloc();
 		// ./Convert "+", "-", "+f", "-f" stuck here
 	}
+
 	return value;
 }
 
