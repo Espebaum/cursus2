@@ -65,14 +65,23 @@ Array<T>::~Array()
 }
 
 template<typename T>
-T& Array<T>::operator[](size_t i) //const인거 하나 만들기
+T& Array<T>::operator[](size_t i) //const인거 하나 만들기(밑에 있음)
 {
 	if (i >= len) 
 	{
 		throw IndexOutOfBound();
 	}
-	std::cout<<BOLDMAGENTA<<"Operator["<<i<<"]"<<": ";
 	return array[i];
+}
+
+template<typename T>
+const T& Array<T>::operator[](size_t i) const
+{
+    if (i >= len) 
+    {
+        throw IndexOutOfBound();
+    }
+    return array[i];
 }
 
 template<typename T>
