@@ -33,10 +33,19 @@ class Span
 		std::vector<int>::iterator	getBegin();
 		std::vector<int>::iterator	getEnd();
 		int	getLen() const;
+		int	getSize() const;
 
-		void	addNumber(unsigned int N);
+		void	addNumber(int N);
 		int		longestSpan();
 		int		shortestSpan();
+		
+		template <typename InputIterator>
+		void addRange(InputIterator first, InputIterator last) {
+			while (first != last) {
+				addNumber(*first);
+				++first;
+			}
+		}
 
 		class VectorSizeError : public std::exception
 		{

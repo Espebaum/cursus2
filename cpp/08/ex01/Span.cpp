@@ -16,7 +16,9 @@ Span::Span(const Span &ref) { *this = ref; }
 Span& Span::operator=(const Span &ref)
 {
 	if (this != &ref)
+	{	
 		this->len = ref.getLen();
+	}
 	return (*this);
 }
 
@@ -30,12 +32,14 @@ std::vector<int>::iterator	Span::getEnd()
     return array.end();
 }
 
+int	Span::getSize() const { return this->array.size(); }
+
 int	Span::getLen() const { return this->len; }
 
-void    Span::addNumber(unsigned int N) //iterator로 하는거 추가
+void    Span::addNumber(int N)
 {
 	try {
-		if ((int) this->array.size() >= len)
+		if (getSize() >= len)
 			throw std::bad_alloc();
 		this->array.push_back(N);
 	} catch (std::bad_alloc &e) {
@@ -45,7 +49,7 @@ void    Span::addNumber(unsigned int N) //iterator로 하는거 추가
 
 int	Span::longestSpan()
 {
-	if (this->array.size() < 2)
+	if (getSize() < 2)
 		throw	Span::VectorSizeError();
 	
 	std::pair<std::vector<int>::iterator, std::vector<int>::iterator> p = std::minmax_element(getBegin(), getEnd());
@@ -58,7 +62,7 @@ int	Span::longestSpan()
 
 int	Span::shortestSpan()
 {
-	if (this->array.size() < 2)
+	if (getSize() < 2)
 		throw	Span::VectorSizeError();
 	
 	std::vector<int> span;
