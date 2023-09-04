@@ -6,7 +6,7 @@ int main(void)
 	std::deque<int> d;
 	std::list<int> l;
 
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 10; i++) {
 		v.push_back(10 - i);
 		d.push_back(10 - i);
 		l.push_back(10 - i);
@@ -21,18 +21,20 @@ int main(void)
 		std::cout<<"-----------------------"<<std::endl;
 	} catch (std::exception &e) {
 		std::cerr<<BOLDRED<<e.what()<<RESET<<std::endl;
+		std::cout<<"-----------------------"<<std::endl;
 	}
 	std::cout<<std::endl;
 
 	// deque //
 	try {
 		std::cout<<"-----------------------"<<std::endl;
-		std::deque<int>::iterator it2 = easyfind(d, 6);
+		std::deque<int>::iterator it2 = easyfind(d, 1);
 		std::cout<<BOLDCYAN<<"value to find : "<<RESET<<*it2<<std::endl;
 		std::cout<<BOLDCYAN<<"Index in deque : "<<RESET<<std::distance(d.begin(), it2)<<std::endl;
 		std::cout<<"-----------------------"<<std::endl;
 	} catch (std::exception &e) {
 		std::cerr<<BOLDRED<<e.what()<<RESET<<std::endl;
+		std::cout<<"-----------------------"<<std::endl;
 	}
 	std::cout<<std::endl;
 
@@ -45,5 +47,6 @@ int main(void)
 		std::cout<<"-----------------------"<<std::endl;
 	} catch (std::exception &e) {
 		std::cerr<<BOLDRED<<e.what()<<RESET<<std::endl;
+		std::cout<<"-----------------------"<<std::endl;
 	}
 }

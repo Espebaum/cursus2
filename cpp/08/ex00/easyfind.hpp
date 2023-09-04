@@ -6,6 +6,7 @@
 # include <vector>
 # include <list>
 # include <deque>
+# include <exception>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
