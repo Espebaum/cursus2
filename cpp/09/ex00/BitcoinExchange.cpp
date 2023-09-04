@@ -24,6 +24,10 @@ void	BitcoinExchange::parseDate(std::string date)
 	std::cout << "Delimiter : " << delimiter << " / ";
 	dt >> day;
 	std::cout << "Day : " << day << '\n';
+	if ((day < 1) || ((month == 1 || month == 3 || month == 5 || month == 7 || \
+		month == 8 || month == 10 || month == 12) && day > 31))
+		throw ParseError();
+	else if ()	
 }
 
 void	BitcoinExchange::parseLine(std::string line)
