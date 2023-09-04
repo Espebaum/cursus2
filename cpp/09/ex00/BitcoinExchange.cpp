@@ -1,5 +1,78 @@
 #include "BitcoinExchange.hpp"
 
+void	BitcoinExchange::parseDate(std::string date)
+{
+	std::stringstream	dt(date.c_str());
+	int	year, month, day;
+	char	delimiter;
+
+	dt >> year;
+	std::cout << "Year : " << year << " / ";
+	if (year < 1900 || year > 9999)
+		throw ParseError();
+	dt >> delimiter;
+	std::cout << "Delimiter : " << delimiter << " / ";
+	if (delimiter != '-')
+		throw ParseError();
+	dt >> month;
+	std::cout << "Month : " << month << " / ";
+	if (month < 1 || month > 12)
+		throw ParseError();
+	dt >> delimiter;
+	if (delimiter != '-')
+		throw ParseError();
+	std::cout << "Delimiter : " << delimiter << " / ";
+	dt >> day;
+	std::cout << "Day : " << day << '\n';
+}
+
+void	BitcoinExchange::parseLine(std::string line)
+{
+	std::stringstream	ln(line.c_str());
+	std::string		dateString, numString;
+	std::string		delimiter;
+	std::string		isEmpty;
+	
+	ln >> dateString;
+	parseDate(dateString); 
+	// std::cout << "Date String : " << dateString << '\n';
+	ln >> delimiter;
+	// std::cout << "Delimiter : " << delimiter << '\n';
+	ln >> numString;
+	// std::cout << "num String : " << numString << '\n';
+	ln >> isEmpty;
+	if (!isEmpty.empty())
+		throw ParseError();
+}
+
+void	BitcoinExchange::parseInput(std::string file)
+{
+	std::ifstream		input(file);
+	std::string			token;
+
+	if (input.fail())
+		throw FileError();
+
+	std::getline(input, token);
+	if (token != "date | value")
+		throw ParseError();
+
+	while (std::getline(input, token))
+	{
+		// std::cout << "TOKEN : " << token << '\n';
+		parseLine(token);
+	}
+}
+
+void    BitcoinExchange::show(std::string file)
+{
+	try {
+		parseInput(file);
+	} catch (std::exception &e) {
+		std::cout << BOLDRED << e.what() << RESET << '\n';
+	}
+}
+
 BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
@@ -12,62 +85,15 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &ref)
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &ref)
 {
 	static_cast<void>(ref);
+	return *this;
 }
 
-void    BitcoinExchange::checkCsvFile()
+const char* BitcoinExchange::ParseError::what() const throw()
 {
-	std::ifstream   csv("data.csv");
-	std::string     read;
-	size_t  data_size;
-	float   value;      
-
-	if (!csv) 
-	{
-		std::cout << "Error: File open error!" << std::endl;
-		// throw Error();
-	}
-
-	if (std::getline(csv, read).eof())
-	{
-		std::cout << "Error: Empty file" << std::endl;
-		// throw Error();
-	}
-
-	while (std::getline(csv, read))
-	{
-		if (read != "date,exchange_rate")
-		{
-			data_size = read.find(',');
-			if (validateDate(read.substr(0, data_size)) == false)
-			{
-				std::cout << "Error: include invalid date." << std::endl;
-				// throw Error();
-			}
-			if (validateInput(read.substr(data_size + 1, read.length())) == false)
-			{
-				std::cout << "Error: include invalid value." << std::endl;
-				// throw Error();
-			}
-			std::istringstream(read.substr(data_size + 1, read.length())) >> value;
-			bitcoinData[read.substr(0, data_size)] = value; // map key에 대한 접근
-		}	
-	}
+	return "Invalid format in file";
 }
 
-int		BitcoinExchange::validateDate(std::string s)
+const char* BitcoinExchange::FileError::what() const throw()
 {
-	if (s.length() != 10 || !(s[4] == '-' && s[7] == '-')) 
-		return false;
-	std::string			tmp;
-	std::istringstream	is(s);
-	int		year, month, day;
-	int		idx = 0;
-
-	while (std::getline(is, tmp, '-'))
-	{
-		if (idx == 0)
-		{
-			std::istringstream(tmp) >> year;
-		}
-	}
+	return "File open Error";
 }
