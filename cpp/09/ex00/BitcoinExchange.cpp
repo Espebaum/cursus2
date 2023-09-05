@@ -72,7 +72,7 @@ float	BitcoinExchange::parseFloat(std::string numString)
 	return fl;
 }
 
-void	BitcoinExchange::parseLine(std::string line)
+void	BitcoinExchange::parseInputLine(std::string line)
 {
 	std::stringstream	ln(line.c_str());
 	std::string			dateString, numString, isEmpty;
@@ -95,7 +95,7 @@ void	BitcoinExchange::parseLine(std::string line)
 		throw ParseError();
 }
 
-void	BitcoinExchange::parseInput(std::string file)
+void	BitcoinExchange::parseFile(std::string file)
 {
 	std::ifstream		input(file);
 	std::string			token;
@@ -109,11 +109,21 @@ void	BitcoinExchange::parseInput(std::string file)
 
 	while (std::getline(input, token))
 	{
-		// std::cout << "TOKEN : " << token << '\n';
 		if (token[10] != ' ' || token[12] != ' ')
+		{
+			std::cout << "INPUT ERROR" << std::endl;
 			throw ParseError();
-		parseLine(token);
+		}
+		parseInputLine(token);
 	}
+}
+
+void	BitcoinExchange::parseDataLine(std::string line)
+{
+	std::stringstream	ln(line.c_str());
+	// std::string			dateString, numString, isEmpty;
+	// char				delimiter;
+	
 }
 
 void	BitcoinExchange::parseCsv()
@@ -125,15 +135,24 @@ void	BitcoinExchange::parseCsv()
 		throw FileError();
 	
 	std::getline(data, token);
-	if (token != "data,exchange_rate")
-		throw ParseError();		
+	if (token != "date,exchange_rate")
+		throw ParseError();
+	while (std::getline(data, token))
+	{
+		if (token[10] != ',')
+		{
+			std::cout << "CSV ERROR" << std::endl;
+			throw ParseError();
+		}
+		parseDataLine(token);
+	}
 }
 
 void    BitcoinExchange::show(std::string file)
 {
 	try {
 		parseCsv();
-		parseInput(file);
+		parseFile(file);
 	} catch (std::exception &e) {
 		std::cout << BOLDRED << e.what() << RESET << '\n';
 	}

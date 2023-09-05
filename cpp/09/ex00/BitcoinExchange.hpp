@@ -31,12 +31,13 @@ class BitcoinExchange
 		~BitcoinExchange();
 
 		// functions
-		void	parseInput(std::string file);
-		void	parseLine(std::string line);
+		void	parseCsv();
+		void	parseDataLine(std::string line);
+
+		void	parseFile(std::string file);
+		void	parseInputLine(std::string line);
 		void	parseDate(std::string date);
 		float	parseFloat(std::string fl);
-
-		void	parseCsv();
 
 		// trigger
 		void	show(std::string file);
