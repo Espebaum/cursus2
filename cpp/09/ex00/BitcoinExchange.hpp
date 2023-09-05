@@ -20,7 +20,9 @@
 class BitcoinExchange 
 {
 	private:
-		std::map<std::string, std::string>	input;
+		// std::pair<std::string, float>	inputPairs[];
+		std::map<std::string, float>	csv;
+
 	public:
 		// OCCF
 		BitcoinExchange();
@@ -32,6 +34,9 @@ class BitcoinExchange
 		void	parseInput(std::string file);
 		void	parseLine(std::string line);
 		void	parseDate(std::string date);
+		float	parseFloat(std::string fl);
+
+		void	parseCsv();
 
 		// trigger
 		void	show(std::string file);
