@@ -1,0 +1,18 @@
+#include "PmergeMe.hpp"
+
+int main(int argc, char **argv)
+{
+    if (argc < 2)
+    {
+        std::cout << "Error" << std::endl;
+        return 0;
+    }
+    else
+    {
+        PmergeMe    p;
+        p.parse(argv);
+        p.vecSort();
+        p.deqSort();
+        p.showVec();
+    }
+}
