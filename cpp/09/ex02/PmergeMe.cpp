@@ -107,7 +107,92 @@ void	PmergeMe::vecSort()
 		<< " elements with std::vector : " << duration << "ms" << std::endl;
 }
 
-// -------- Function Sorting std::vector -------- //
+// -------- Function Sorting std::deque -------- //
+
+void	PmergeMe::insertDeqElement(int idx)
+{
+	int value = deqPendElement[idx];
+	int	left = 0;
+	int	right = deq.size();
+	
+	while (left < right)
+	{
+		int mid = (left + right) / 2;
+		if (deq[mid] < value)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	deq.insert(deq.begin() + left, value);
+}
+
+void	PmergeMe::mergeInsertDeq()
+{
+	if (deq.size() == 1)
+		return ;
+
+	deq.clear();
+	for (size_t i = 0; i < deqMainChain.size(); i++)
+		deq.push_back(deqMainChain[i]);
+	deq.push_front(deqPendElement[0]);
+
+	int	idx = 1;
+	while (static_cast<size_t>(deqJacobsthal[idx]) < deqPendElement.size())
+	{
+		for (int i = deqJacobsthal[idx] - 1; i > deqJacobsthal[idx - 1] - 1; i--)
+			insertDeqElement(i);
+		idx++;
+	}
+
+	for (int i = deqPendElement.size() - 1; i > deqJacobsthal[idx - 1] - 1; i--)
+		insertDeqElement(i);
+}
+
+void	PmergeMe::devidePairs(std::deque<Pair> &pairs)
+{
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		deqMainChain.push_back(pairs[i].mainChain);
+		deqPendElement.push_back(pairs[i].pendElement); 
+	}
+	if (deq.size() % 2 != 0)
+		deqPendElement.push_back(deq.back());
+}
+
+void	PmergeMe::makePairs(std::deque<Pair> &pairs)
+{
+	int size = deq.size();
+
+    if (size % 2 != 0)
+        size -= 1;
+
+    for (int i = 0; i < size; i += 2) 
+	{
+		Pair	pair;
+		pair.mainChain = deq[i];
+		pair.pendElement = deq[i + 1];
+		pairs.push_back(pair);
+    }
+	std::sort(pairs.begin(), pairs.end());
+}
+
+void	PmergeMe::reorderDeq()
+{
+    int size = deq.size();
+    
+    if (size % 2 != 0)
+        size -= 1;
+    
+    for (int i = 0; i < size; i += 2)
+	{
+        if (deq[i] < deq[i + 1])
+        {
+			double	tmp = deq[i];
+			deq.erase(deq.begin() + i);
+			deq.insert(deq.begin() + (i + 1), tmp);
+		}
+	}
+}
 
 void	PmergeMe::deqSort()
 {
@@ -133,7 +218,6 @@ void	PmergeMe::deqSort()
 
 void	PmergeMe::fillJacobsthal()
 {
-	// 0 1 1 3 5 11 21 43 ...
 	int	limit = vec.size();
 	int idx = 0;
 	int	cur = 1;
@@ -145,11 +229,6 @@ void	PmergeMe::fillJacobsthal()
 		int next = pow(2, idx + 1) - vecJacobsthal[idx - 1];
 		cur = next;
 	}
-
-	// std::cout << "JACOBSTHAL : ";
-	// for (size_t i = 0; i < vecJacobsthal.size(); i++)
-	// 	std::cout << vecJacobsthal[i] << ' ';
-	// std::cout << std::endl;
 
 	std::deque<int> deq(vecJacobsthal.begin(), vecJacobsthal.end());
 	deqJacobsthal = deq;
