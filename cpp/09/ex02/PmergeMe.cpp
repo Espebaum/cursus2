@@ -105,18 +105,6 @@ void	PmergeMe::vecSort()
 
     std::cout << "Time to process a range of " << vec.size() \
 		<< " elements with std::vector : " << duration << "ms" << std::endl;
-
-	// std::cout << "MAIN CHAIN : ";
-	// for (size_t i = 0; i < vecMainChain.size(); i++)
-	// 	std::cout << vecMainChain[i] << ' ';
-	// std::cout << " / MAIN CHAIN SIZE : " << vecMainChain.size();
-	// std::cout << std::endl;
-
-	// std::cout << "PEND : ";
-	// for (size_t i = 0; i < vecPendElement.size(); i++)
-	// 	std::cout << vecPendElement[i] << ' ';
-	// std::cout << " / PEND ELEMENT SIZE : " << vecPendElement.size();
-	// std::cout << std::endl;
 }
 
 // -------- Function Sorting std::vector -------- //
