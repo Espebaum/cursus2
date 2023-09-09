@@ -7,12 +7,13 @@ int main(int argc, char **argv)
         std::cout << "Error" << std::endl;
         return 0;
     }
-    else
-    {
+
+    try {
         PmergeMe    p;
         p.parse(argv);
         p.vecSort();
         p.deqSort();
-        p.showVec();
-    }
+    } catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 }

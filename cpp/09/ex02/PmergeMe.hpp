@@ -5,6 +5,8 @@
 # include <vector>
 # include <deque>
 # include <sstream>
+# include <cmath>
+# include <sys/time.h>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -18,14 +20,16 @@
 
 struct Pair 
 {
-    double a;
-    double b;
+    double mainChain;
+    double pendElement;
 };
 
 class PmergeMe
 {
 	private:
 		std::string				input;
+		std::vector<int>		vecJacobsthal;
+		std::deque<int>			deqJacobsthal;
 
 		std::vector<double>		vec;
 		std::vector<double>		vecMainChain;
@@ -38,16 +42,24 @@ class PmergeMe
 	public:
 		// Function //
 		void    parse(char **argv);
+		void	fillJacobsthal();
 
 		// Vector //
 		void	vecSort();
 		void	reorderVec();
 		void	makePairs(std::vector<Pair> &pairs);
 		void	devidePairs(std::vector<Pair> &pairs);
+		void	mergeInsertVec();
+		void	insertVecElement(int idx);
 		void	showVec();
 
 		// Deque //
 		void	deqSort();
+		void	reorderDeq();
+		void	makePairs(std::deque<Pair> &pairs);
+		void	devidePairs(std::deque<Pair> &pairs);
+		void	mergeInsertDeq();
+		void	insertDeqElement(int idx);
 
 		// OCCF // 
 		PmergeMe();
