@@ -1,15 +1,19 @@
 #include "PmergeMe.hpp"
 
+// int bi = 0;
+
 // -------- Function Sorting std::vector -------- //
 
-void	PmergeMe::insertVecElement(int idx)
+void	PmergeMe::insertVecElement(int idx, int &num)
 {
 	int value = vecPendElement[idx];
 	int	left = 0;
-	int	right = vec.size();
-	
+	int	right = idx + num; 
+	// int right = vec.size();
+
 	while (left < right)
 	{
+		// bi++;
 		int mid = (left + right) / 2;
 		if (vec[mid] < value)
 			left = mid + 1;
@@ -17,6 +21,7 @@ void	PmergeMe::insertVecElement(int idx)
 			right = mid;
 	}
 	vec.insert(vec.begin() + left, value);
+	num++;
 }
 
 void	PmergeMe::mergeInsertVec()
@@ -29,16 +34,22 @@ void	PmergeMe::mergeInsertVec()
 		vec.push_back(vecMainChain[i]);
 	vec.insert(vec.begin(), vecPendElement[0]);
 
-	int	idx = 1;
-	while (static_cast<size_t>(vecJacobsthal[idx]) < vecPendElement.size())
-	{
-		for (int i = vecJacobsthal[idx] - 1; i > vecJacobsthal[idx - 1] - 1; i--)
-			insertVecElement(i);
-		idx++;
-	}
+	int	num = 1;
+	// for (size_t i = 0; i < vecPendElement.size(); i++)
+	// 	insertVecElement(i, num);
 
-	for (int i = vecPendElement.size() - 1; i > vecJacobsthal[idx - 1] - 1; i--)
-		insertVecElement(i);
+	int	idx = 1;
+	if (vecJacobsthal.size() > 1)
+	{
+		while (static_cast<size_t>(vecJacobsthal[idx]) < vecPendElement.size())
+		{
+			for (int i = vecJacobsthal[idx] - 1; i > vecJacobsthal[idx - 1] - 1; i--)
+				insertVecElement(i, num);
+			idx++;
+		}
+		for (int i = vecPendElement.size() - 1; i > vecJacobsthal[idx - 1] - 1; i--)
+			insertVecElement(i, num);
+	}
 }
 
 void	PmergeMe::devidePairs(std::vector<Pair> &pairs)
@@ -137,15 +148,17 @@ void	PmergeMe::mergeInsertDeq()
 	deq.push_front(deqPendElement[0]);
 
 	int	idx = 1;
-	while (static_cast<size_t>(deqJacobsthal[idx]) < deqPendElement.size())
+	if (deqJacobsthal.size() > 1)
 	{
-		for (int i = deqJacobsthal[idx] - 1; i > deqJacobsthal[idx - 1] - 1; i--)
+		while (static_cast<size_t>(deqJacobsthal[idx]) < deqPendElement.size())
+		{
+			for (int i = deqJacobsthal[idx] - 1; i > deqJacobsthal[idx - 1] - 1; i--)
+				insertDeqElement(i);
+			idx++;
+		}
+		for (int i = deqPendElement.size() - 1; i > deqJacobsthal[idx - 1] - 1; i--)
 			insertDeqElement(i);
-		idx++;
 	}
-
-	for (int i = deqPendElement.size() - 1; i > deqJacobsthal[idx - 1] - 1; i--)
-		insertDeqElement(i);
 }
 
 void	PmergeMe::devidePairs(std::deque<Pair> &pairs)
@@ -234,6 +247,16 @@ void	PmergeMe::fillJacobsthal()
 	deqJacobsthal = deq;
 }
 
+void	PmergeMe::checkDuplicated()
+{
+	int size = vec.size();
+
+	for (int i = 0; i < size - 1; i++)
+		for (int j = i + 1; j < size; j++)
+			if (vec[i] == vec[j])
+				throw ValueError();
+}
+
 void    PmergeMe::parse(char **argv)
 {
 	std::vector<std::string>	tmp;
@@ -255,6 +278,7 @@ void    PmergeMe::parse(char **argv)
 		vec.push_back(value);
 		deq.push_back(value);
 	}
+	checkDuplicated();
 	fillJacobsthal();
 }
 
@@ -265,6 +289,24 @@ void	PmergeMe::showVec()
 	for (size_t i = 0; i < vec.size(); i++)
 		std::cout << vec[i] << ' ';
 	std::cout << std::endl;	
+}
+
+void	PmergeMe::isOrdered()
+{
+	size_t size = vec.size();
+	
+	for (size_t i = 0; i < size - 1; i++)
+	{
+		for (size_t j = i + 1; j < size; j++)
+		{
+			if (vec[i] > vec[j])
+			{
+				std::cout << BOLDRED << "Not Ordered!!!!!!!!!!!!!!!!!!" << std::endl;
+				return ;
+			}
+		}
+	}			 
+	// std::cout << BOLDRED << "BI : " << RESET << bi << std::endl;
 }
 
 // EXCEPTION //
@@ -286,7 +328,15 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &ref)
 {
 	if (this != &ref)
 	{
-		// this->type = ref.type; //YOU CAN CHANGE THIS IF YOU NEED!!!
+		this->input = ref.input;
+		this->vecJacobsthal = ref.vecJacobsthal;
+		this->deqJacobsthal = ref.deqJacobsthal;
+		this->vec = ref.vec;
+		this->vecMainChain = ref.vecMainChain;
+		this->vecPendElement = ref.vecPendElement;
+		this->deq = ref.deq;
+		this->deqMainChain = ref.deqMainChain;
+		this->deqPendElement = ref.deqPendElement;
 	}
 	return *this;
 }

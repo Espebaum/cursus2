@@ -13,6 +13,7 @@ int main(int argc, char **argv)
         p.parse(argv);
         p.vecSort();
         p.deqSort();
+        p.isOrdered();
     } catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}

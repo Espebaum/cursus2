@@ -29,7 +29,6 @@ template<typename T>
 Array<T>::Array(const Array& ref) : len(ref.size())
 {
 	std::cout<<BOLDBLUE<< "Copying Constructor operating" << std::endl;
-	this->len = ref.size();
 	this->array = new	T[this->len];
 	for (size_t i = 0; i < this->len; i++)
 	{
@@ -65,9 +64,9 @@ Array<T>::~Array()
 }
 
 template<typename T>
-T& Array<T>::operator[](size_t i) //const인거 하나 만들기(밑에 있음)
+T& Array<T>::operator[](size_t i)
 {
-	if (i >= len) 
+	if (i >= len)
 	{
 		throw IndexOutOfBound();
 	}

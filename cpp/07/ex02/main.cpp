@@ -29,8 +29,6 @@ int main(void)
 		{
 			std::cout<<iThree1[0]<<' ';
 			std::cout<<iThree1[1]<<std::endl;
-			std::cout<<iThree2[0]<<' ';
-			std::cout<<iThree2[1]<<std::endl;
 			std::cout<<iThree1[4]<<std::endl;
 		}
 		catch (std::exception &e)
@@ -42,7 +40,18 @@ int main(void)
 	{
 		Array<std::string> sZero;
 		Array<std::string> sThree1(3);
+		sThree1[0] = "C++";
+		sThree1[1] = "Java";
+		sThree1[2] = "Spring";
 
+		try 
+		{
+			std::cout<<BOLDWHITE<<sThree1[0]<<' '<<sThree1[1]<<' '<<sThree1[2]<<RESET<<std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cout<<BOLDRED<<e.what()<<std::endl;
+		}
 	}
 	return (0);
 }

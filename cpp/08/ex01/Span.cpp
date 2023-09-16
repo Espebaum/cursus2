@@ -18,6 +18,9 @@ Span& Span::operator=(const Span &ref)
 	if (this != &ref)
 	{	
 		this->len = ref.getLen();
+		this->array.clear();
+		for (int i = 0; i < getLen(); i++)
+			this->array[i] = ref.array[i];
 	}
 	return (*this);
 }

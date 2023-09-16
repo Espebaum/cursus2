@@ -18,6 +18,7 @@
 #define BOLDBLUE	"\033[1m\033[36m"
 #define BOLDWHITE	"\033[1m\033[37m"
 
+
 struct Pair 
 {
     double mainChain;
@@ -42,7 +43,9 @@ class PmergeMe
 	public:
 		// Function //
 		void    parse(char **argv);
+		void	checkDuplicated();
 		void	fillJacobsthal();
+		void	isOrdered();
 
 		// Vector //
 		void	vecSort();
@@ -50,7 +53,7 @@ class PmergeMe
 		void	makePairs(std::vector<Pair> &pairs);
 		void	devidePairs(std::vector<Pair> &pairs);
 		void	mergeInsertVec();
-		void	insertVecElement(int idx);
+		void	insertVecElement(int idx, int &num);
 		void	showVec();
 
 		// Deque //

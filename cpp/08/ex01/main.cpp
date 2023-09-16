@@ -2,6 +2,7 @@
 
 void	withNoIterator()
 {
+	std::cout << BOLDGREEN << "WITH NO ITERATOR" << RESET << std::endl;
 	Span	sp = Span(5);
 
 	sp.addNumber(6); 
@@ -17,6 +18,7 @@ void	withNoIterator()
 
 void	withIterator()
 {
+	std::cout << BOLDGREEN << "WITH ITERATOR" << RESET << std::endl;
 	try {
 		Span	sp = Span(5);
 		std::vector<int> numbers;
@@ -38,6 +40,7 @@ void	withIterator()
 
 void	noSpan()
 {
+	std::cout << BOLDGREEN << "NO SPAN" << RESET << std::endl;
 	{
 		try {
 			Span	sp = Span(0);
@@ -63,17 +66,23 @@ void	noSpan()
 
 void largeSpan(void) 
 {
-	Span	sp = Span(20000);
+	std::cout << BOLDGREEN << "LARGE SPAN" << RESET << std::endl;
+	try {
+		Span	sp = Span(20000);
 
-	for (int i = -10000; i <= 9999; i++)
-		sp.addNumber(i);
+		for (int i = -10000; i <= 9999; i++)
+			sp.addNumber(i);
 
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+		std::cout << BOLDYELLOW << sp.shortestSpan() << std::endl;
+		std::cout << BOLDBLUE << sp.longestSpan() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << BOLDRED << e.what() << RESET << std::endl;
+	}
 }
 
 void largeSpanWithIterator(void) 
 {
+	std::cout << BOLDGREEN << "LARGE SPAN WITH ITERATOR" << RESET << std::endl;
 	try {
 		Span	sp = Span(20000);
 		std::vector<int> numbers;
@@ -92,10 +101,13 @@ void largeSpanWithIterator(void)
 int main(void)
 {
 	withNoIterator();
+	std::cout << std::endl;
 	withIterator();
+	std::cout << std::endl;
 	noSpan();
+	std::cout << std::endl;
 	largeSpan();
+	std::cout << std::endl;
 	largeSpanWithIterator();
-
 	return 0;
 }

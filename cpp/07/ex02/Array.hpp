@@ -19,7 +19,7 @@ class Array
 		Array& operator=(const Array& ref);
 		~Array();
 
-		T&	operator[](size_t i); //const인거 하나 추가(밑에 있음)
+		T&	operator[](size_t i);
 		const T&	operator[](size_t i) const;
 		unsigned int	size() const;		
 		class	IndexOutOfBound : public std::exception

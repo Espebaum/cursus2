@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <exception>
+#include <iomanip>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -17,11 +18,21 @@
 #define BOLDBLUE	"\033[1m\033[36m"
 #define BOLDWHITE	"\033[1m\033[37m"
 
+enum ParseState
+{
+	BAD_INPUT = 1,
+	NOT_POSITIVE = 2,
+	TOO_LARGE = 3
+};
+
 class BitcoinExchange 
 {
 	private:
-		// std::pair<std::string, float>	inputPairs[];
-		std::map<std::string, float>	csv;
+		std::map<std::string, float>	csvPairs;
+		std::string						inputDate;
+		float							inputFloat;
+		int								state;
+		std::string						badInput;
 
 	public:
 		// OCCF
@@ -32,23 +43,35 @@ class BitcoinExchange
 
 		// functions
 		void	parseCsv();
+		void	parseCsvDate(std::string date);
 		void	parseDataLine(std::string line);
 
 		void	parseFile(std::string file);
 		void	parseInputLine(std::string line);
-		void	parseDate(std::string date);
-		float	parseFloat(std::string fl);
+		void	parseInputDate(std::string date);
+		void	parseInputFloat(std::string fl);
 
 		// trigger
 		void	show(std::string file);
+		void	printValue();
+		void	clearValues();
 		
-		// exception
-		class ParseError : public std::exception
+		// exceptions
+		class InputError : public std::exception
 		{
 			public:
 				const char* what() const throw();
 		};
-
+		class CsvError : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+		class DateError : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 		class FileError : public std::exception
 		{
 			public:

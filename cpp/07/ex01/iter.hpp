@@ -15,7 +15,16 @@
 #define BOLDWHITE	"\033[1m\033[37m"
 
 template<typename T>
-void    iter(T* array, size_t length, void (*func)(T&)) //const인거 하나 추가
+void    iter(T* array, size_t length, void (*func)(T&))
+{
+	for (size_t i = 0; i < length; i++)
+	{
+		func(array[i]);
+	}
+}
+
+template<typename T>
+void    iter(const T* array, size_t length, void (*func)(const T&))
 {
 	for (size_t i = 0; i < length; i++)
 	{
@@ -32,7 +41,8 @@ void	next(T &str)
 template<> // template specialization
 void	next(std::string& str) 
 {
-    for (size_t i = 0; i < str.length(); i++) {
+    for (size_t i = 0; i < str.length(); i++) 
+	{
         str[i]++;
     }
 }

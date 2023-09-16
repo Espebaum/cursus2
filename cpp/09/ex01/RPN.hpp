@@ -1,8 +1,9 @@
-#ifndef RPN_HPP
-# define RPN_HPP
+#pragma once
 
 # include <iostream>
 # include <string>
+# include <stack>
+# include <sstream>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -16,13 +17,29 @@
 
 class RPN
 {
-    private:
-        std::string input;
-    public:
-        RPN();
-        RPN(const RPN& ref);
-        ~RPN();
-        RPN& operator=(const RPN& ref);
-};
+	private:
+		std::string         input;
+		std::stack<double>  value;
 
-#endif
+	public:
+		RPN();
+		RPN(const RPN& ref);
+		~RPN();
+		RPN& operator=(const RPN& ref);
+
+		// functions
+		void    split(std::string formula);
+		void	readValue(std::string token);
+		void	operate(std::string op);
+
+		// trigger
+		void    calculate(std::string argv);
+
+		// exception
+		class ValueError : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+};

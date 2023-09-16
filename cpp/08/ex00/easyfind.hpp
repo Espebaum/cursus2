@@ -6,7 +6,8 @@
 # include <vector>
 # include <list>
 # include <deque>
-# include <exception>
+# include <algorithm>
+# include <stdexcept>
 
 #define RESET		"\033[0m"
 #define BOLDBLACK	"\033[1m\033[30m"
@@ -21,17 +22,23 @@
 template <typename T>
 typename T::iterator easyfind(T& container, int value)
 {
-	typename T::iterator it;
-
-	//find
-	for (it = container.begin(); it != container.end(); it++)
-		if (*it == value)
-			return it;
-
-	if (it == container.end())
-		throw std::runtime_error("Cannot find value in Container");
+    typename T::iterator it;
 	
-	return container.end();
+	it = std::find(container.begin(), container.end(), value);
+    if (it == container.end())
+        throw std::runtime_error("Cannot find value in Container");
+	return it;
 }
 
 #endif
+
+	// typename T::iterator it;
+
+	// for (it = container.begin(); it != container.end(); it++)
+	// 	if (*it == value)
+	// 		return it;
+
+	// if (it == container.end())
+	// 	throw std::runtime_error("Cannot find value in Container");
+	
+	// return container.end();

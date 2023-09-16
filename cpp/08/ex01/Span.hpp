@@ -39,8 +39,8 @@ class Span
 		int		longestSpan();
 		int		shortestSpan();
 		
-		template <typename InputIterator>
-		void addRange(InputIterator first, InputIterator last) {
+		template <typename T>
+		void addRange(T first, T last) {
 			while (first != last) {
 				addNumber(*first);
 				++first;
