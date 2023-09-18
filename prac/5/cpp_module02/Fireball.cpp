@@ -6,8 +6,10 @@ Fireball::Fireball()
 	this->effects = "burnt to a crisp";
 }
 
+Fireball::~Fireball() {}
+
 Fireball* Fireball::clone() const
 {
-	Fireball* fire = new Fireball();
-	return fire;
+	Fireball* foo = new Fireball();
+	return foo;
 }

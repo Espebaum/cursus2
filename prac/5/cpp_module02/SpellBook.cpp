@@ -1,5 +1,9 @@
 #include "SpellBook.hpp"
 
+SpellBook::SpellBook() {}
+
+SpellBook::~SpellBook() {}
+
 void	SpellBook::learnSpell(ASpell* Spell)
 {
 	if (Spell)
@@ -17,12 +21,11 @@ void	SpellBook::forgetSpell(const std::string& SpellName)
 
 ASpell*	SpellBook::createSpell(const std::string& SpellName)
 {
-	ASpell* MySpell = NULL;
+	ASpell* newSpell = NULL;
 	for (size_t i = 0; i < Spells.size(); i++)
 	{
 		if (SpellName == Spells[i]->getName())
-			MySpell = Spells[i];
+			newSpell = Spells[i];
 	}
-	return MySpell;
+	return newSpell;
 }
-

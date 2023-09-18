@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ATarget.hpp"
 #include <vector>
+#include "ATarget.hpp"
 
 class ATarget;
 
@@ -15,7 +15,8 @@ class TargetGenerator
 		TargetGenerator();
 		~TargetGenerator();
 
-		void learnTargetType(ATarget* Target);
-		void forgetTargetType(const std::string& TargetType);
-		ATarget* createTarget(const std::string& TargetType);
+		void	learnTargetType(ATarget* target);
+		void	forgetTargetType(const std::string& TargetType);
+		ATarget*	createTarget(const std::string& TargetType);
 };
+

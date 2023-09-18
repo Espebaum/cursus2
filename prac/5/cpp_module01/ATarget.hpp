@@ -11,13 +11,14 @@ class ATarget
 	protected:
 		std::string type;
 	public:
-		const std::string& getType() const;
+		std::string	getType() const;
 		virtual ATarget* clone() const = 0;
-		ATarget(const std::string& type);
 		
 		ATarget() {}
-		virtual ~ATarget() {}
 		ATarget(const ATarget& ref) { *this = ref; }
 		ATarget& operator=(const ATarget& ref) { static_cast<void>(ref); return *this; }
-		void getHitBySpell(const ASpell& ref) const;
+		virtual ~ATarget() {}
+		ATarget(const std::string& _type);
+		void	getHitBySpell(const ASpell& ref) const;	
 };
+

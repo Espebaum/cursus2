@@ -6,25 +6,22 @@
 #include "ASpell.hpp"
 #include "ATarget.hpp"
 
-class ATarget;
-class ASpell;
-
 class Warlock
 {
 	private:
 		std::string name;
 		std::string title;
 		std::vector<ASpell*> Spells;
-		Warlock() {}
+		Warlock() {};
 		Warlock(const Warlock& ref) { *this = ref; }
 		Warlock& operator=(const Warlock& ref) { static_cast<void>(ref); return *this; }
 	public:
+		~Warlock();
+		Warlock(const std::string& _name, const std::string& _title);
 		const std::string& getName() const;
 		const std::string& getTitle() const;
 		void setTitle(const std::string& ref);
 		void introduce() const;
-		Warlock(const std::string& name, const std::string& title);
-		~Warlock();
 
 		void learnSpell(ASpell* Spell);
 		void forgetSpell(std::string SpellName);

@@ -4,10 +4,10 @@ TargetGenerator::TargetGenerator() {}
 
 TargetGenerator::~TargetGenerator() {}
 
-void	TargetGenerator::learnTargetType(ATarget* Target)
+void	TargetGenerator::learnTargetType(ATarget* target)
 {
-	if (Target)
-		Targets.push_back(Target);
+	if (target)
+		Targets.push_back(target);
 }
 
 void	TargetGenerator::forgetTargetType(const std::string& TargetType)
@@ -21,13 +21,12 @@ void	TargetGenerator::forgetTargetType(const std::string& TargetType)
 
 ATarget*	TargetGenerator::createTarget(const std::string& TargetType)
 {
-	ATarget* MyTarget = NULL;
+	ATarget* newTarget = NULL;
 	for (size_t i = 0; i < Targets.size(); i++)
 	{
 		if (TargetType == Targets[i]->getType())
-			MyTarget = Targets[i];
+			newTarget = Targets[i];
 	}
-	return MyTarget;
+	return newTarget;
 }
-
 

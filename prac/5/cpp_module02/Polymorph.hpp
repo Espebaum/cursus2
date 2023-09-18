@@ -6,6 +6,6 @@ class Polymorph : public ASpell
 {
 	public:
 		Polymorph();
-		~Polymorph() {}
+		~Polymorph();
 		Polymorph* clone() const;
 };

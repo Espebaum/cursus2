@@ -1,6 +1,6 @@
 #include "ATarget.hpp"
 
-const std::string& ATarget::getType() const
+std::string ATarget::getType() const
 {
 	return type;
 }

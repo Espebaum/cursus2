@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ASpell.hpp"
 #include <vector>
+#include "ASpell.hpp"
 
 class ASpell;
 
@@ -12,10 +12,10 @@ class SpellBook
 		SpellBook(const SpellBook& ref) { *this = ref; }
 		SpellBook& operator=(const SpellBook& ref) { static_cast<void>(ref); return *this; }
 	public:
-		SpellBook() {}
-		~SpellBook() {}
+		SpellBook();
+		~SpellBook();
 
-		void learnSpell(ASpell* Spell);
-		void forgetSpell(const std::string& SpellName);
-		ASpell* createSpell(const std::string& SpellName);
+		void	learnSpell(ASpell* Spell);
+		void	forgetSpell(const std::string& SpellName);
+		ASpell*	createSpell(const std::string& SpellName);
 };

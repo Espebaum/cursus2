@@ -6,8 +6,10 @@ Polymorph::Polymorph()
 	this->effects = "turned into a critter";
 }
 
+Polymorph::~Polymorph() {}
+
 Polymorph* Polymorph::clone() const
 {
-	Polymorph* fire = new Polymorph();
-	return fire;
+	Polymorph* foo = new Polymorph();
+	return foo;
 }
