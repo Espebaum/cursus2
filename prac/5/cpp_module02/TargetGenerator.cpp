@@ -4,39 +4,30 @@ TargetGenerator::TargetGenerator() {}
 
 TargetGenerator::~TargetGenerator() {}
 
-TargetGenerator::TargetGenerator(const TargetGenerator& ref)
+void	TargetGenerator::learnTargetType(ATarget* Target)
 {
-	*this = ref;
+	if (Target)
+		Targets.push_back(Target);
 }
 
-TargetGenerator& TargetGenerator::operator=(const TargetGenerator& ref)
+void	TargetGenerator::forgetTargetType(const std::string& TargetType)
 {
-	static_cast<void>(ref);
-	return *this;
-}
-
-void TargetGenerator::learnTargetType(ATarget* target)
-{
-	if (target)
-		targets.push_back(target);
-}
-
-void TargetGenerator::forgetTargetType(std::string const& targetName)
-{
-	for (size_t i = 0; i < targets.size(); i++)
+	for (size_t i = 0; i < Targets.size(); i++)
 	{
-		if (targetName == targets[i]->getType())
-			targets.erase(targets.begin() + i);
+		if (TargetType == Targets[i]->getType())
+			Targets.erase(Targets.begin() + i);
 	}
 }
 
-ATarget* TargetGenerator::createTarget(std::string const& targetName)
+ATarget*	TargetGenerator::createTarget(const std::string& TargetType)
 {
-	ATarget* newTarget = NULL;
-	for (size_t i = 0; i < targets.size(); i++)
+	ATarget* MyTarget = NULL;
+	for (size_t i = 0; i < Targets.size(); i++)
 	{
-		if (targetName == targets[i]->getType())
-			newTarget = targets[i];
+		if (TargetType == Targets[i]->getType())
+			MyTarget = Targets[i];
 	}
-	return newTarget;
+	return MyTarget;
 }
+
+

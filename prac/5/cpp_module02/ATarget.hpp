@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include "ASpell.hpp"
 
 class ASpell;
 
@@ -10,14 +11,13 @@ class ATarget
 	protected:
 		std::string type;
 	public:
-		ATarget();
-		ATarget(const ATarget& ref);
-		ATarget& operator=(const ATarget& ref);
-		virtual ~ATarget();
-		ATarget(std::string _type);
-
 		const std::string& getType() const;
 		virtual ATarget* clone() const = 0;
-		void getHitBySpell(const ASpell& ref) const;	
+		ATarget(const std::string& type);
+		
+		ATarget() {}
+		virtual ~ATarget() {}
+		ATarget(const ATarget& ref) { *this = ref; }
+		ATarget& operator=(const ATarget& ref) { static_cast<void>(ref); return *this; }
+		void getHitBySpell(const ASpell& ref) const;
 };
-

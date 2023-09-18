@@ -3,20 +3,19 @@
 #include <iostream>
 #include <string>
 
-class Warlock 
+class Warlock
 {
 	private:
-		std::string	name; // 체크
+		std::string name;
 		std::string title;
-		Warlock();
-		Warlock(const Warlock& ref);
-		Warlock& operator=(const Warlock& ref);
-	
+		Warlock() {}
+		Warlock(const Warlock& ref) { *this = ref; }
+		Warlock& operator=(const Warlock& ref) { static_cast<void>(ref); return *this; }
 	public:
-		~Warlock();
-		Warlock(const std::string& _name, const std::string& _title); 
 		const std::string& getName() const;
 		const std::string& getTitle() const;
-		void setTitle(const std::string& title);
-		void introduce() const;	
+		void setTitle(const std::string& ref);
+		void introduce() const;
+		Warlock(const std::string& name, const std::string& title);
+		~Warlock();
 };

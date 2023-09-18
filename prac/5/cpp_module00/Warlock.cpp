@@ -1,32 +1,24 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock() {}
-
-Warlock::Warlock(const std::string& _name, const std::string& _title) : \
-		name(_name), title(_title)
+Warlock::Warlock(const std::string& _name, const std::string& _title) :
+	name(_name), title(_title)
 {
 	std::cout << name << ": This looks like another boring day." << std::endl;
 }
 
-Warlock::~Warlock()
+const std::string& Warlock::getName() const
 {
-	std::cout << name << ": My job here is done!" << std::endl;
+	return name;
+}
+ 
+const std::string& Warlock::getTitle() const
+{
+	return title;
 }
 
-Warlock::Warlock(const Warlock& ref)
+void	Warlock::setTitle(const std::string& ref)
 {
-	static_cast<void>(ref);
-}
-
-Warlock& Warlock::operator=(const Warlock& ref)
-{
-	static_cast<void>(ref);
-	return *this;
-}
-
-void	Warlock::setTitle(const std::string& _title)
-{
-	this->title = _title;
+	this->title = ref;
 }
 
 void	Warlock::introduce() const
@@ -34,12 +26,7 @@ void	Warlock::introduce() const
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-const std::string& Warlock::getName() const
+Warlock::~Warlock()
 {
-	return name;
-}
-
-const std::string& Warlock::getTitle() const
-{
-	return title;
+	std::cout << name << ": My job here is done!" << std::endl;
 }

@@ -3,32 +3,30 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <map>
-
-#include "ATarget.hpp"
 #include "ASpell.hpp"
-#include "Fwoosh.hpp"
-#include "Dummy.hpp"
+#include "ATarget.hpp"
 
-class Warlock 
+class ATarget;
+class ASpell;
+
+class Warlock
 {
 	private:
-		const std::string	name; // 체크
+		std::string name;
 		std::string title;
 		std::vector<ASpell*> Spells;
-		Warlock();
-		Warlock(const Warlock& ref);
-		Warlock& operator=(const Warlock& ref);
-	
+		Warlock() {}
+		Warlock(const Warlock& ref) { *this = ref; }
+		Warlock& operator=(const Warlock& ref) { static_cast<void>(ref); return *this; }
 	public:
-		~Warlock();
-		Warlock(const std::string& _name, const std::string& _title); 
 		const std::string& getName() const;
 		const std::string& getTitle() const;
-		void setTitle(const std::string& title);
+		void setTitle(const std::string& ref);
 		void introduce() const;
+		Warlock(const std::string& name, const std::string& title);
+		~Warlock();
 
-		void learnSpell(ASpell* spell);
+		void learnSpell(ASpell* Spell);
 		void forgetSpell(std::string SpellName);
-		void launchSpell(std::string SpellName, const ATarget& target);
+		void launchSpell(std::string SpellName, const ATarget& ref);
 };

@@ -1,21 +1,21 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include "ATarget.hpp"
+#include <vector>
+
+class ATarget;
 
 class TargetGenerator
 {
 	private:
-		TargetGenerator(const TargetGenerator& ref);
-		TargetGenerator& operator=(const TargetGenerator& ref);
-		std::vector<ATarget*> targets;
+		std::vector<ATarget*> Targets;
+		TargetGenerator(const TargetGenerator& ref) { *this = ref; }
+		TargetGenerator& operator=(const TargetGenerator& ref) { static_cast<void>(ref); return *this; }
 	public:
 		TargetGenerator();
 		~TargetGenerator();
 
-		void learnTargetType(ATarget* target);
-		void forgetTargetType(std::string const&);
-		ATarget* createTarget(std::string const&);	
+		void learnTargetType(ATarget* Target);
+		void forgetTargetType(const std::string& TargetType);
+		ATarget* createTarget(const std::string& TargetType);
 };

@@ -1,21 +1,21 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include "ASpell.hpp"
+#include <vector>
+
+class ASpell;
 
 class SpellBook
 {
 	private:
-		std::vector<ASpell*> Book;
-		SpellBook(const SpellBook& ref);
-		SpellBook& operator=(const SpellBook& ref);
+		std::vector<ASpell*> Spells;
+		SpellBook(const SpellBook& ref) { *this = ref; }
+		SpellBook& operator=(const SpellBook& ref) { static_cast<void>(ref); return *this; }
 	public:
-		~SpellBook();
-		SpellBook();
-		
+		SpellBook() {}
+		~SpellBook() {}
+
 		void learnSpell(ASpell* Spell);
-		void forgetSpell(std::string const &ref);
-		ASpell* createSpell(std::string const &ref);
+		void forgetSpell(const std::string& SpellName);
+		ASpell* createSpell(const std::string& SpellName);
 };

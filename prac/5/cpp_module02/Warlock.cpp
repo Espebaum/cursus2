@@ -1,32 +1,24 @@
 #include "Warlock.hpp"
 
-Warlock::Warlock() {}
-
-Warlock::Warlock(const std::string& _name, const std::string& _title) : \
-		name(_name), title(_title)
+Warlock::Warlock(const std::string& _name, const std::string& _title) :
+	name(_name), title(_title)
 {
 	std::cout << name << ": This looks like another boring day." << std::endl;
 }
 
-Warlock::~Warlock()
+const std::string& Warlock::getName() const
 {
-	std::cout << name << ": My job here is done!" << std::endl;
+	return name;
+}
+ 
+const std::string& Warlock::getTitle() const
+{
+	return title;
 }
 
-Warlock::Warlock(const Warlock& ref)
+void	Warlock::setTitle(const std::string& ref)
 {
-	static_cast<void>(ref);
-}
-
-Warlock& Warlock::operator=(const Warlock& ref)
-{
-	static_cast<void>(ref);
-	return *this;
-}
-
-void	Warlock::setTitle(const std::string& _title)
-{
-	this->title = _title;
+	this->title = ref;
 }
 
 void	Warlock::introduce() const
@@ -34,29 +26,24 @@ void	Warlock::introduce() const
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-const std::string& Warlock::getName() const
+Warlock::~Warlock()
 {
-	return name;
+	std::cout << name << ": My job here is done!" << std::endl;
 }
 
-const std::string& Warlock::getTitle() const
+void	Warlock::learnSpell(ASpell* Spell)
 {
-	return title;
+	if (Spell)
+		MySpell.learnSpell(Spell);
 }
 
-void Warlock::learnSpell(ASpell* spell)
+void	Warlock::forgetSpell(std::string SpellName)
 {
-	Spells.learnSpell(spell);
+	MySpell.forgetSpell(SpellName);
 }
 
-void Warlock::forgetSpell(std::string SpellName)
+void	Warlock::launchSpell(std::string SpellName, const ATarget& ref)
 {
-	Spells.forgetSpell(SpellName);
+	if (MySpell.createSpell(SpellName))
+		MySpell.createSpell(SpellName)->launch(ref);
 }
-
-void Warlock::launchSpell(std::string SpellName, const ATarget &ref)
-{
-	if (Spells.createSpell(SpellName))
-		Spells.createSpell(SpellName)->launch(ref);
-}
-

@@ -10,6 +10,6 @@ Fwoosh::~Fwoosh() {}
 
 Fwoosh* Fwoosh::clone() const
 {
-	Fwoosh *foo = new Fwoosh();
+	Fwoosh* foo = new Fwoosh();
 	return foo;
 }

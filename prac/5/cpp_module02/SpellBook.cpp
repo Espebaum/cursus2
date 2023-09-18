@@ -1,42 +1,28 @@
 #include "SpellBook.hpp"
 
-SpellBook::SpellBook() {}
-
-SpellBook::~SpellBook() {}
-
-SpellBook::SpellBook(const SpellBook& ref)
-{
-	*this = ref;
-}
-
-SpellBook& SpellBook::operator=(const SpellBook& ref)
-{
-	static_cast<void>(ref);
-	return *this;
-}
-
-void SpellBook::learnSpell(ASpell* Spell)
+void	SpellBook::learnSpell(ASpell* Spell)
 {
 	if (Spell)
-		Book.push_back(Spell);
+		Spells.push_back(Spell);
 }
 
-void SpellBook::forgetSpell(std::string const &SpellName)
+void	SpellBook::forgetSpell(const std::string& SpellName)
 {
-	for (size_t i = 0; i < Book.size(); i++)
+	for (size_t i = 0; i < Spells.size(); i++)
 	{
-		if (SpellName == Book[i]->getName())
-			Book.erase(Book.begin() + i);	
+		if (SpellName == Spells[i]->getName())
+			Spells.erase(Spells.begin() + i);
 	}
 }
 
-ASpell* SpellBook::createSpell(std::string const &SpellName)
+ASpell*	SpellBook::createSpell(const std::string& SpellName)
 {
-	ASpell* newSpell = NULL;
-	for (size_t i = 0; i < Book.size(); i++)
+	ASpell* MySpell = NULL;
+	for (size_t i = 0; i < Spells.size(); i++)
 	{
-		if (SpellName == Book[i]->getName())
-			newSpell = Book[i];  	
+		if (SpellName == Spells[i]->getName())
+			MySpell = Spells[i];
 	}
-	return newSpell;
+	return MySpell;
 }
+
