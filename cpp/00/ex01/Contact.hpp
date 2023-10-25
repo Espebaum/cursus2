@@ -36,4 +36,6 @@ class Contact
 		std::string		checkContact(std::string s);
 };
 
+std::string	ridrspace(std::string tmp);
+
 #endif

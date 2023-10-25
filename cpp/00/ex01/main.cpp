@@ -1,14 +1,5 @@
 #include "PhoneBook.hpp"
-
-std::string	ridrspace(std::string tmp)
-{
-	for(int i = 0; i < static_cast<int>(tmp.length()); i++)
-	{
-		if (std::isspace(tmp[i]))
-			return (tmp.substr(0, i));
-	}
-	return (tmp);
-}
+#include "Contact.hpp"
 
 int main(void)
 {

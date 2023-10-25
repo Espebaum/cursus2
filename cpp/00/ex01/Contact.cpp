@@ -1,5 +1,14 @@
 #include "Contact.hpp"
 
+std::string	ridrspace(std::string tmp)
+{
+    int len = tmp.length();
+
+    while (tmp[len - 1] == ' ')
+	    len--;
+	return (tmp.substr(0, len));
+}
+
 bool	checkTab(std::string s)
 {
 	for(int i = 0; i < static_cast<int>(s.length()); i++)
@@ -33,7 +42,10 @@ void	Contact::newContact()
 				exit(1);
 			}
 			else
-				info[i] = tmp;
+			{
+				std::string new_tmp = ridrspace(tmp);
+				info[i] = new_tmp;
+			}
 		}
 	}
 	return ;
