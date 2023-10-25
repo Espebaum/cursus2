@@ -4,7 +4,7 @@ std::string	ridrspace(std::string tmp)
 {
     int len = tmp.length();
 
-    while (tmp[len - 1] == ' ')
+    while (tmp[len - 1] == ' ' || tmp[len - 1] == '\t')
 	    len--;
 	return (tmp.substr(0, len));
 }
