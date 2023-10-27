@@ -22,7 +22,7 @@ void	HumanB::setWeapon(Weapon &weapon)
 
 std::string HumanB::isArmed(Weapon* param) const
 {
-	std::cout << param;
+	// std::cout << param;
 	if (!param)
 		return "Fists";
 	return (param->getType());

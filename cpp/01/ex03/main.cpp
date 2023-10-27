@@ -20,7 +20,7 @@ int main()
 	//Code for HumanA
 	{
 		Weapon club = Weapon("crude spiked club");
-		std::cout << &club << '\n';
+		// std::cout << &club << '\n';
 
 		HumanA bob("Bob", club);
 		bob.attack();
@@ -35,7 +35,7 @@ int main()
 	//Code for HumanB
 	{
 		Weapon club = Weapon("crude spiked club");
-		std::cout << &club << '\n';
+		// std::cout << &club << '\n';
 
 		HumanB jim("Jim");
 
