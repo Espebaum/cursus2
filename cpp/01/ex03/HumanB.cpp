@@ -30,5 +30,6 @@ std::string HumanB::isArmed(Weapon* param) const
 
 void HumanB::attack()
 {
+	// this->param->setType("Cane");
 	std::cout << BOLDBLUE << this->name << BOLDWHITE << " attacks with their " << BOLDRED << isArmed(this->param) << std::endl;
 }

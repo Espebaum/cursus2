@@ -2,17 +2,17 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
-// void	leakcheck()
-// {
-// 	std::cout << std::endl << BOLDWHITE << "----------------" << std::endl;
-// 	std::cout << BOLDGREEN << "leak checking..." << std::endl;
-// 	std::cout << BOLDWHITE << "----------------" << RESET << std::endl;
-// 	system("leaks Weapon");
-// }
+void	leakcheck()
+{
+	std::cout << std::endl << BOLDWHITE << "----------------" << std::endl;
+	std::cout << BOLDGREEN << "leak checking..." << std::endl;
+	std::cout << BOLDWHITE << "----------------" << RESET << std::endl;
+	system("leaks Weapon");
+}
 
 int main()
 {
-	// // atexit(leakcheck);
+	// atexit(leakcheck);
 	// std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
 	// std::cout << BOLDWHITE << "          New Hero" << BOLDBLUE << " Bob " << BOLDWHITE << "has appeared!!" << std::endl;
 	// std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
