@@ -3,6 +3,7 @@
 HumanB::HumanB(std::string name)
 {
 	this->name = name;
+	this->param = NULL;
 }
 
 HumanB::~HumanB() {}
@@ -12,14 +13,22 @@ void	HumanB::setWeapon(Weapon &weapon)
 	this->param = &weapon;
 }
 
-std::string HumanB::isArmed(std::string s) const
+// std::string HumanB::isArmed(std::string s) const
+// {
+// 	if (s.empty())
+// 		return "Fists";
+// 	return (s);
+// }
+
+std::string HumanB::isArmed(Weapon* param) const
 {
-	if (s.empty())
+	std::cout << param;
+	if (!param)
 		return "Fists";
-	return (s);
+	return (param->getType());
 }
 
 void HumanB::attack()
 {
-	std::cout << BOLDBLUE << this->name << BOLDWHITE << " attacks with their " << BOLDRED << isArmed(this->param->getType()) << std::endl;
+	std::cout << BOLDBLUE << this->name << BOLDWHITE << " attacks with their " << BOLDRED << isArmed(this->param) << std::endl;
 }

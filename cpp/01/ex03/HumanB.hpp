@@ -25,7 +25,7 @@ class HumanB
 		~HumanB();
 		void setWeapon(Weapon &param);
 		void attack();
-		std::string isArmed(std::string s) const;
+		std::string isArmed(Weapon* param) const;
 };
 
 #endif

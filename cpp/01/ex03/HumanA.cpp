@@ -6,5 +6,6 @@ HumanA::~HumanA() {}
 
 void HumanA::attack()
 {
+	std::cout << &(this->param);
 	std::cout << BOLDBLUE << this->name << BOLDWHITE << " attacks with their " << BOLDRED << this->param.getType() << std::endl;
 }

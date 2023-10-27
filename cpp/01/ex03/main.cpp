@@ -12,14 +12,15 @@
 
 int main()
 {
-	// atexit(leakcheck);
-	std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
-	std::cout << BOLDWHITE << "          New Hero" << BOLDBLUE << " Bob " << BOLDWHITE << "has appeared!!" << std::endl;
-	std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
+	// // atexit(leakcheck);
+	// std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
+	// std::cout << BOLDWHITE << "          New Hero" << BOLDBLUE << " Bob " << BOLDWHITE << "has appeared!!" << std::endl;
+	// std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
 	
 	//Code for HumanA
 	{
 		Weapon club = Weapon("crude spiked club");
+		std::cout << &club << '\n';
 
 		HumanA bob("Bob", club);
 		bob.attack();
@@ -27,14 +28,17 @@ int main()
 		bob.attack();
 	}
 
-	std::cout << std::endl << BOLDWHITE << "-----------------------------------------------" << std::endl;
-	std::cout << BOLDWHITE << "          New Hero" << BOLDBLUE << " Jim " << BOLDWHITE << "has appeared!!" << std::endl;
-	std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
+	// std::cout << std::endl << BOLDWHITE << "-----------------------------------------------" << std::endl;
+	// std::cout << BOLDWHITE << "          New Hero" << BOLDBLUE << " Jim " << BOLDWHITE << "has appeared!!" << std::endl;
+	// std::cout << BOLDWHITE << "-----------------------------------------------" << std::endl;
+	
 	//Code for HumanB
 	{
 		Weapon club = Weapon("crude spiked club");
+		std::cout << &club << '\n';
 
 		HumanB jim("Jim");
+
 		// jim.setWeapon(club);
 		jim.attack();
 		club.setType("some other type of club");
