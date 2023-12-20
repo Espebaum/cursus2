@@ -5,10 +5,10 @@ void	withNoIterator()
 	std::cout << BOLDGREEN << "WITH NO ITERATOR" << RESET << std::endl;
 	Span	sp = Span(5);
 
-	sp.addNumber(6); 
+	sp.addNumber(9); 
 	sp.addNumber(3); 
 	sp.addNumber(17); 
-	sp.addNumber(9); 
+	sp.addNumber(6); 
 	sp.addNumber(11);
 
 	std::cout << BOLDYELLOW << sp.shortestSpan() << std::endl; 
@@ -22,12 +22,12 @@ void	withIterator()
 	try {
 		Span	sp = Span(5);
 		std::vector<int> numbers;
-		numbers.push_back(1);
-		numbers.push_back(3);
-		numbers.push_back(5);
-		numbers.push_back(10);
 		numbers.push_back(11);
-		numbers.push_back(20);
+		numbers.push_back(30);
+		numbers.push_back(12);
+		numbers.push_back(23);
+		numbers.push_back(9);
+		numbers.push_back(90);
 
 		sp.addRange(numbers.begin(), numbers.end());
 		std::cout << BOLDYELLOW << sp.shortestSpan() << std::endl; 

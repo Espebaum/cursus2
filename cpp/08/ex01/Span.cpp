@@ -67,12 +67,14 @@ int	Span::shortestSpan()
 {
 	if (getSize() < 2)
 		throw	Span::VectorSizeError();
-	
+
+	std::vector<int> tmp(this->array);
+	sort(tmp.begin(), tmp.end());
 	std::vector<int> span;
 
 	for (int i = 0; i < static_cast<int>(this->array.size()) - 1; i++)
 	{
-		int	num = std::abs(this->array[i + 1] - this->array[i]);
+		int	num = std::abs(tmp[i + 1] - tmp[i]);
 		span.push_back(num);
 	}
 
